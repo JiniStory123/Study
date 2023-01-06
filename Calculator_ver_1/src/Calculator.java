@@ -237,7 +237,7 @@ public class Calculator extends JFrame
     public static double calc(String input)
     {
         int idx;
-        idx = input.indexOf('+');
+        idx = input.indexOf(' ');
 
         if (idx != -1)
         {
