@@ -4,6 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Stack;
 
+/*
+스택 자료구조를 이용해 식을 계산한다.
+수식을 읽어들이고 수가 입력되면 그대로 출력, 연산자가 입력되면 스택에 push.
+연산자가 스택에 저장된 상태에서 연산자가 입력된다면 둘의 우선순위를 비교해 결정한다.
+
+새로 입력된 연산자가 괄호 열기 "("인 경우 pop 없이 push
+새로 입력된 연산자가 괄호 닫기 ")"인 경우 괄호 열기 "("가 pop될 때까지 pop 수행
+새로 입력된 연산자 우선순위 > 스택 속 연산자의 우선순위 pop 없이 push
+그 외의 경우 스택 속 연산자를 pop
+*/
+
 public class Calculator extends JFrame
 {
     private JTextField tf_input;
@@ -152,7 +163,6 @@ public class Calculator extends JFrame
             {
                 double num1 = stack.pop();
                 double num2 = stack.pop();
-                System.out.print("\n" + num2 + " " + exp + " " + num1);
 
                 switch (exp)
                 {
