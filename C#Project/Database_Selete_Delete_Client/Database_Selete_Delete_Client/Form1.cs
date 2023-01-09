@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Database_Selete_Delete_Client
 {
@@ -99,7 +100,38 @@ namespace Database_Selete_Delete_Client
         {
             if(isSuccess == true)
             {
+                bool selected = listView1.SelectedItems.Count > 0;
+                if(selected == false)
+                {
+                    return;
+                }
+                ListViewItem item = listView1.SelectedItems[0];
+                String selectString = item.SubItems[1].Text;
+                //Console.WriteLine(item.SubItems[1].Text);
 
+                using (var conn = new NpgsqlConnection("Host=localhost;Username=postgres;Password=1234;Database=study"))
+                {
+                    try
+                    {
+                        conn.Open();
+                        using (var cmd = new NpgsqlCommand())
+                        {
+                            cmd.Connection = conn;
+                            if(connMode == 1)
+                            {
+
+                            }
+                            String text = "DELETE FROM car WHERE number = '" + selectString + "';";
+                            Console.WriteLine(text);
+                            cmd.CommandText = text;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    catch (Exception ee)
+                    {
+
+                    }
+                }
             }
             else
             {
