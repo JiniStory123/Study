@@ -46,6 +46,7 @@
             this.ch_name,
             this.ch_humen,
             this.ch_date});
+            this.list.FullRowSelect = true;
             this.list.HideSelection = false;
             this.list.Location = new System.Drawing.Point(12, 12);
             this.list.Name = "list";
@@ -57,22 +58,22 @@
             // ch_primary
             // 
             this.ch_primary.Text = "ISBN";
-            this.ch_primary.Width = 90;
+            this.ch_primary.Width = 80;
             // 
             // ch_name
             // 
             this.ch_name.Text = "Name";
-            this.ch_name.Width = 80;
+            this.ch_name.Width = 110;
             // 
             // ch_humen
             // 
             this.ch_humen.Text = "Author";
-            this.ch_humen.Width = 80;
+            this.ch_humen.Width = 90;
             // 
             // ch_date
             // 
             this.ch_date.Text = "Date";
-            this.ch_date.Width = 120;
+            this.ch_date.Width = 80;
             // 
             // bt_book
             // 

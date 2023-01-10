@@ -16,7 +16,7 @@ namespace DB_Connection_Client
         Boolean isSuccess = false;
         String commandText = "";
         int connMode;
-        string connStr = "Host=localhost;Username=postgres;Password=1234;Database=study";
+        string connStr = "Host=192.168.201.151;Username=postgres;Password=12345678;Database=book_car";
         //NpgsqlConnection conn = new NpgsqlConnection("Host=localhost;Username=postgres;Password=1234;Database=study");
 
         public Form1()
@@ -43,7 +43,7 @@ namespace DB_Connection_Client
             else if(connMode == 2)
             {
                 this.ch_primary.Text = string.Format("Number");
-                this.ch_humen.Text = string.Format("Driver");
+                this.ch_humen.Text = string.Format("Company");
             }
             this.ch_name.Text = string.Format("Name");
             this.ch_date.Text = string.Format("Date");
@@ -81,7 +81,7 @@ namespace DB_Connection_Client
                                 {
                                     string[] row = { reader["number"].ToString(),
                                                       reader["name"].ToString(),
-                                                      reader["driver"].ToString(),
+                                                      reader["company"].ToString(),
                                                       date.ToString("yyyy-MM-dd")};
                                     item = new ListViewItem(row);
                                     list.Items.Add(item);
@@ -115,10 +115,20 @@ namespace DB_Connection_Client
                         }
                         else if(connMode == 2)
                         {
-                            commandText = "delete from book where number = '" + selectString + "';";
+                            commandText = "delete from car where number = '" + selectString + "';";
                         }
                         cmd.CommandText = commandText;
                         cmd.ExecuteNonQuery();
+                        list.Items.Clear();
+                        if (connMode == 1)
+                        {
+                            commandText = "select * from book";
+                        }
+                        else if (connMode == 2)
+                        {
+                            commandText = "select * from car";
+                        }
+                        DB_Connection();
                     }
                 }
                 catch (Exception e)
