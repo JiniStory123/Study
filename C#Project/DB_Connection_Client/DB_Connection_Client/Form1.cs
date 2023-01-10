@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DB_Connection_Client
 {
@@ -50,6 +51,14 @@ namespace DB_Connection_Client
             this.ch_date.Text = string.Format("Date");
         }
 
+        void init_Column_Size()
+        {
+            for (int i = 0; i < list.Columns.Count; i++)
+            {
+                list.Columns[i].Width = -2;
+            }
+        }
+
         void DB_Connection()
         {
             using (var conn = new NpgsqlConnection(connStr))
@@ -85,10 +94,11 @@ namespace DB_Connection_Client
                                                       reader["company"].ToString(),
                                                       date.ToString("yyyy-MM-dd")};
                                     item = new ListViewItem(row);
-                                    list.Items.Add(item);
+                                    list.Items.Add(item);  
                                 }
                             }
                             isSuccess = true;
+                            init_Column_Size();
                         }
                     }
                 }
