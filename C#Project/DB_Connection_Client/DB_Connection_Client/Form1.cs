@@ -84,7 +84,7 @@ namespace DB_Connection_Client
                                     string[] row = { reader["isbn"].ToString(),
                                                       reader["name"].ToString(),
                                                       reader["author"].ToString(),
-                                                      date.ToString("yyyy-MM-dd")};
+                                                      date.ToString("yyyy.MM.dd")};
                                     item = new ListViewItem(row);
                                     list.Items.Add(item);
                                 }
@@ -93,7 +93,7 @@ namespace DB_Connection_Client
                                     string[] row = { reader["number"].ToString(),
                                                       reader["name"].ToString(),
                                                       reader["company"].ToString(),
-                                                      date.ToString("yyyy-MM-dd")};
+                                                      date.ToString("yyyy.MM.dd")};
                                     item = new ListViewItem(row);
                                     list.Items.Add(item);  
                                 }
