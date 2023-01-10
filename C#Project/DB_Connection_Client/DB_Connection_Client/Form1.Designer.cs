@@ -36,6 +36,8 @@
             this.bt_book = new System.Windows.Forms.Button();
             this.bt_car = new System.Windows.Forms.Button();
             this.bt_delete = new System.Windows.Forms.Button();
+            this.txt_search_primary = new System.Windows.Forms.TextBox();
+            this.bt_search_primary = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // list
@@ -50,7 +52,7 @@
             this.list.HideSelection = false;
             this.list.Location = new System.Drawing.Point(12, 12);
             this.list.Name = "list";
-            this.list.Size = new System.Drawing.Size(369, 127);
+            this.list.Size = new System.Drawing.Size(533, 127);
             this.list.TabIndex = 0;
             this.list.UseCompatibleStateImageBehavior = false;
             this.list.View = System.Windows.Forms.View.Details;
@@ -58,17 +60,17 @@
             // ch_primary
             // 
             this.ch_primary.Text = "ISBN";
-            this.ch_primary.Width = 80;
+            this.ch_primary.Width = 120;
             // 
             // ch_name
             // 
             this.ch_name.Text = "Name";
-            this.ch_name.Width = 110;
+            this.ch_name.Width = 200;
             // 
             // ch_humen
             // 
             this.ch_humen.Text = "Author";
-            this.ch_humen.Width = 90;
+            this.ch_humen.Width = 110;
             // 
             // ch_date
             // 
@@ -79,34 +81,55 @@
             // 
             this.bt_book.Location = new System.Drawing.Point(12, 145);
             this.bt_book.Name = "bt_book";
-            this.bt_book.Size = new System.Drawing.Size(173, 23);
+            this.bt_book.Size = new System.Drawing.Size(254, 23);
             this.bt_book.TabIndex = 1;
             this.bt_book.Text = "BOOK";
             this.bt_book.UseVisualStyleBackColor = true;
             // 
             // bt_car
             // 
-            this.bt_car.Location = new System.Drawing.Point(208, 145);
+            this.bt_car.Location = new System.Drawing.Point(291, 145);
             this.bt_car.Name = "bt_car";
-            this.bt_car.Size = new System.Drawing.Size(173, 23);
+            this.bt_car.Size = new System.Drawing.Size(254, 23);
             this.bt_car.TabIndex = 2;
             this.bt_car.Text = "CAR";
             this.bt_car.UseVisualStyleBackColor = true;
             // 
             // bt_delete
             // 
-            this.bt_delete.Location = new System.Drawing.Point(12, 174);
+            this.bt_delete.Location = new System.Drawing.Point(12, 201);
             this.bt_delete.Name = "bt_delete";
-            this.bt_delete.Size = new System.Drawing.Size(369, 23);
+            this.bt_delete.Size = new System.Drawing.Size(533, 23);
             this.bt_delete.TabIndex = 3;
             this.bt_delete.Text = "DELETE";
             this.bt_delete.UseVisualStyleBackColor = true;
+            // 
+            // txt_search_primary
+            // 
+            this.txt_search_primary.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.txt_search_primary.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txt_search_primary.Location = new System.Drawing.Point(12, 174);
+            this.txt_search_primary.Name = "txt_search_primary";
+            this.txt_search_primary.Size = new System.Drawing.Size(431, 21);
+            this.txt_search_primary.TabIndex = 4;
+            // 
+            // bt_search_primary
+            // 
+            this.bt_search_primary.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.bt_search_primary.Location = new System.Drawing.Point(449, 174);
+            this.bt_search_primary.Name = "bt_search_primary";
+            this.bt_search_primary.Size = new System.Drawing.Size(96, 23);
+            this.bt_search_primary.TabIndex = 6;
+            this.bt_search_primary.Text = "SEARCH";
+            this.bt_search_primary.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(393, 372);
+            this.ClientSize = new System.Drawing.Size(557, 232);
+            this.Controls.Add(this.bt_search_primary);
+            this.Controls.Add(this.txt_search_primary);
             this.Controls.Add(this.bt_delete);
             this.Controls.Add(this.bt_car);
             this.Controls.Add(this.bt_book);
@@ -114,6 +137,7 @@
             this.Name = "Form1";
             this.Text = "데이터베이스";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -127,6 +151,8 @@
         private System.Windows.Forms.Button bt_book;
         private System.Windows.Forms.Button bt_car;
         private System.Windows.Forms.Button bt_delete;
+        private System.Windows.Forms.TextBox txt_search_primary;
+        private System.Windows.Forms.Button bt_search_primary;
     }
 }
 
