@@ -265,16 +265,16 @@ namespace DB_Connection_Client
                 if (connMode == 1)
                 {
                     commandText = "select * from book where cast(isbn as varchar(10)) like '%" + input +
-                                    "%' or lower(name) like '%" + input +
-                                    "%' or lower(author) like '%" + input +
-                                    "%' or cast(date as varchar(20)) like '%" + input + "%'";
+                                    "%' or lower(name) like lower('%" + input +
+                                    "%') or lower(author) like lower('%" + input +
+                                    "%') or cast(date as varchar(20)) like '%" + input + "%'";
                 }
                 else if (connMode == 2)
                 {
-                    commandText = "select * from car where lower(number) like '%" + input +
-                                    "%' or lower(name) like '%" + input +
-                                    "%' or lower(company) like '%" + input +
-                                    "%' or cast(date as varchar(20)) like '%" + input + "%'";
+                    commandText = "select * from car where lower(number) like lower('%" + input +
+                                    "%') or lower(name) like lower('%" + input +
+                                    "%') or lower(company) like lower('%" + input +
+                                    "%') or cast(date as varchar(20)) like '%" + input + "%'";
                 }
             }
             DB_Search_Primary(connStr);
