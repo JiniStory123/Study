@@ -33,6 +33,7 @@ namespace DB_Connection_Client
             this.bt_car.Click += new System.EventHandler(this.bt_car_Click);
             this.bt_delete.Click += new System.EventHandler(this.bt_delete_Click);
             this.bt_search_primary.Click += new System.EventHandler(this.bt_search_primary_Click);
+            txt_search_primary.KeyDown += KeyDown;
         }
 
         void init_Column()
@@ -277,6 +278,14 @@ namespace DB_Connection_Client
                 }
             }
             DB_Search_Primary(connStr);
+        }
+
+        private void KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                bt_search_primary_Click(sender, e);
+            }
         }
     }
 }
