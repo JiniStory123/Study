@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DB_Connection_Client
+namespace DB_Connection_Insert_Update_Test
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace DB_Connection_Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new group_insert());
+            Application.Run(new Form1());
         }
     }
 }

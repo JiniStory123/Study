@@ -33,10 +33,10 @@ D:\GitDirectory\Study\C#Project\DB_Connection_Client\DB_Connection_Client\bin\De
 D:\GitDirectory\Study\C#Project\DB_Connection_Client\DB_Connection_Client\bin\Debug\System.ValueTuple.xml
 D:\GitDirectory\Study\C#Project\DB_Connection_Client\DB_Connection_Client\obj\Debug\DB_Connection_Client.csproj.AssemblyReference.cache
 D:\GitDirectory\Study\C#Project\DB_Connection_Client\DB_Connection_Client\obj\Debug\DB_Connection_Client.csproj.SuggestedBindingRedirects.cache
-D:\GitDirectory\Study\C#Project\DB_Connection_Client\DB_Connection_Client\obj\Debug\DB_Connection_Client.Form1.resources
 D:\GitDirectory\Study\C#Project\DB_Connection_Client\DB_Connection_Client\obj\Debug\DB_Connection_Client.Properties.Resources.resources
 D:\GitDirectory\Study\C#Project\DB_Connection_Client\DB_Connection_Client\obj\Debug\DB_Connection_Client.csproj.GenerateResource.cache
 D:\GitDirectory\Study\C#Project\DB_Connection_Client\DB_Connection_Client\obj\Debug\DB_Connection_Client.csproj.CoreCompileInputs.cache
 D:\GitDirectory\Study\C#Project\DB_Connection_Client\DB_Connection_Client\obj\Debug\DB_Connection_Client.csproj.CopyComplete
 D:\GitDirectory\Study\C#Project\DB_Connection_Client\DB_Connection_Client\obj\Debug\DB_Connection_Client.exe
 D:\GitDirectory\Study\C#Project\DB_Connection_Client\DB_Connection_Client\obj\Debug\DB_Connection_Client.pdb
+D:\GitDirectory\Study\C#Project\DB_Connection_Client\DB_Connection_Client\obj\Debug\DB_Connection_Client.group_insert.resources
