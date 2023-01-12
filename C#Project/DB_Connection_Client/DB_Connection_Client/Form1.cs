@@ -109,7 +109,7 @@ namespace DB_Connection_Client
         void Reading_Data(NpgsqlCommand cmd)
         {
             // DB 데이터 읽어와 리스트뷰에 표시하기
-            list.Items.Clear();
+            list.Items.Clear(); // 일시적으로 리스트뷰 아이템 모두 제거
             using (var reader = cmd.ExecuteReader())
             {
                 ListViewItem item;
@@ -135,14 +135,15 @@ namespace DB_Connection_Client
                         item = new ListViewItem(row);
                         list.Items.Add(item);
                     }
+                    init_Column();
                 }
             }
         }
 
-        void DB_Connection()
+        void DB_Connection_Reading()
         {
             // DB에 접속하여 리스트뷰에 뿌릴 준비하기
-            using (var conn = new NpgsqlConnection(connStr))
+            using(var conn = new NpgsqlConnection(connStr))
             {
                 try
                 {
@@ -152,9 +153,9 @@ namespace DB_Connection_Client
                         cmd.Connection = conn;
                         cmd.CommandText = commandText;
 
-                        Reading_Data(cmd);
-                        isSuccess = true;
-                        init_Column_Size();
+                        Reading_Data(cmd); // 리스트뷰에 아이템 뿌림
+                        isSuccess = true; // 접속 완료 체크
+                        init_Column_Size(); // 컬럼 사이즈 자동 조절
                     }
                 }
                 catch (Exception e) 
@@ -171,12 +172,11 @@ namespace DB_Connection_Client
             {
                 try
                 {
-                    conn.Open();
+                    conn.Open(); // 접속
                     using (var cmd = conn.CreateCommand())
                     {
                         cmd.Connection = conn;
                         cmd.CommandText = commandText;
-
 
                         Reading_Data(cmd);
 
@@ -188,7 +188,7 @@ namespace DB_Connection_Client
                         {
                             commandText = "select * from car";
                         }
-                        DB_Connection();
+                        DB_Connection_Reading();
                     }
 
                 }
@@ -223,7 +223,7 @@ namespace DB_Connection_Client
                         {
                             commandText = "select * from car";
                         }
-                        DB_Connection();
+                        DB_Connection_Reading();
                     }
                 }
                 catch (Exception e)
@@ -286,7 +286,7 @@ namespace DB_Connection_Client
                         {
                             commandText = "select * from car";
                         }
-                        DB_Connection();
+                        DB_Connection_Reading();
                     }
                 }
                 catch (Exception e)
@@ -303,7 +303,7 @@ namespace DB_Connection_Client
             init_Column();
             init_txt();
             commandText = "select * from book";
-            DB_Connection();
+            DB_Connection_Reading();
         }
 
         private void bt_car_Click(object sender, EventArgs e)
@@ -312,7 +312,7 @@ namespace DB_Connection_Client
             init_Column();
             init_txt();
             commandText = "select * from car";
-            DB_Connection();
+            DB_Connection_Reading();
         }
 
         private void bt_insert_Click(object sender, EventArgs e)
@@ -327,7 +327,12 @@ namespace DB_Connection_Client
             String str_infor = txt_infor.Text;
             String str_date = txt_date.Text;
 
-            // 유효성 검사 시작
+            /*
+             * 유효성 검증
+             * 1. 텍스트 박스에 빈 항목 X
+             * 2. Book Table Insert 시도 시, ISBN 텍스트 박스에는 숫자만 입력되야 함
+             * 3. date 텍스트 박스는 8자리의 숫자만 포함되야 함
+             */
             if(txt_primary.Text.Equals("") || txt_name.Text.Equals("") || txt_infor.Text.Equals("") || txt_date.Text.Equals(""))
             {
                 MessageBox.Show("빈 항목 없이 작성해주세요.");
@@ -366,7 +371,12 @@ namespace DB_Connection_Client
             String str_infor = txt_infor.Text;
             String str_date = txt_date.Text;
 
-            // 유효성 검사 시작
+            /*
+             * 유효성 검증
+             * 1. 텍스트 박스에 빈 항목 X
+             * 2. Book Table Insert 시도 시, ISBN 텍스트 박스에는 숫자만 입력되야 함
+             * 3. date 텍스트 박스는 8자리의 숫자만 포함되야 함
+             */
             if (txt_primary.Text.Equals("") || txt_name.Text.Equals("") || txt_infor.Text.Equals("") || txt_date.Text.Equals(""))
             {
                 MessageBox.Show("빈 항목 없이 작성해주세요.");
