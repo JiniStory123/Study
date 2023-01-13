@@ -1,0 +1,11 @@
+D:\GitDirectory\Study\C#Project\DB_Socket_Server\DB_Socket_Server\obj\Debug\DB_Socket_Server.csproj.AssemblyReference.cache
+D:\GitDirectory\Study\C#Project\DB_Socket_Server\DB_Socket_Server\obj\Debug\DB_Socket_Server.csproj.SuggestedBindingRedirects.cache
+D:\GitDirectory\Study\C#Project\DB_Socket_Server\DB_Socket_Server\obj\Debug\DB_Socket_Server.Form1.resources
+D:\GitDirectory\Study\C#Project\DB_Socket_Server\DB_Socket_Server\obj\Debug\DB_Socket_Server.Properties.Resources.resources
+D:\GitDirectory\Study\C#Project\DB_Socket_Server\DB_Socket_Server\obj\Debug\DB_Socket_Server.csproj.GenerateResource.cache
+D:\GitDirectory\Study\C#Project\DB_Socket_Server\DB_Socket_Server\obj\Debug\DB_Socket_Server.csproj.CoreCompileInputs.cache
+D:\GitDirectory\Study\C#Project\DB_Socket_Server\DB_Socket_Server\bin\Debug\DB_Socket_Server.exe.config
+D:\GitDirectory\Study\C#Project\DB_Socket_Server\DB_Socket_Server\bin\Debug\DB_Socket_Server.exe
+D:\GitDirectory\Study\C#Project\DB_Socket_Server\DB_Socket_Server\bin\Debug\DB_Socket_Server.pdb
+D:\GitDirectory\Study\C#Project\DB_Socket_Server\DB_Socket_Server\obj\Debug\DB_Socket_Server.exe
+D:\GitDirectory\Study\C#Project\DB_Socket_Server\DB_Socket_Server\obj\Debug\DB_Socket_Server.pdb

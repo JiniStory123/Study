@@ -106,6 +106,13 @@ namespace DB_Connection_Client
             }
         }
 
+        void print_error(Exception e)
+        {
+            Console.WriteLine("============== Error ==============");
+            Console.WriteLine(e.Message);
+            MessageBox.Show("에러가 발생했습니다.\n\n============== Error ==============\n\n" + e.Message, "Error");
+        }
+
         void Reading_Data(NpgsqlCommand cmd)
         {
             // DB 데이터 읽어와 리스트뷰에 표시하기
@@ -160,8 +167,7 @@ namespace DB_Connection_Client
                 }
                 catch (Exception e) 
                 {
-                    Console.WriteLine("============== Error ==============");
-                    Console.WriteLine(e.Message);
+                    print_error(e);
                 }
             }
         }
@@ -189,14 +195,15 @@ namespace DB_Connection_Client
                             commandText = "select * from car";
                         }
                         DB_Connection_Reading();
+                        list.EnsureVisible(list.Items.Count-1);
+                        init_txt();
                     }
 
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("============== Error ==============");
-                    Console.WriteLine(e.Message);
-                    MessageBox.Show("에러가 발생했습니다.\n\n============== Error ==============\n\n" + e.Message, "Error");
+                    print_error(e);
+                    init_txt();
                 }
             }
         }
@@ -224,12 +231,13 @@ namespace DB_Connection_Client
                             commandText = "select * from car";
                         }
                         DB_Connection_Reading();
+                        init_txt();
                     }
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("============== Error ==============");
-                    Console.WriteLine(e.Message);
+                    print_error(e);
+                    init_txt();
                 }
             }
         }
@@ -251,8 +259,7 @@ namespace DB_Connection_Client
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("============== Error ==============");
-                    Console.WriteLine(e.Message);
+                    print_error(e);
                 }
             }
         }
@@ -291,8 +298,7 @@ namespace DB_Connection_Client
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("============== Error ==============");
-                    Console.WriteLine(e.Message);
+                    print_error(e);
                 }
             }
         }

@@ -1,0 +1,11 @@
+D:\GitDirectory\Study\C#Project\DB_Socket_Client\DB_Socket_Client\bin\Debug\DB_Socket_Client.exe.config
+D:\GitDirectory\Study\C#Project\DB_Socket_Client\DB_Socket_Client\bin\Debug\DB_Socket_Client.exe
+D:\GitDirectory\Study\C#Project\DB_Socket_Client\DB_Socket_Client\bin\Debug\DB_Socket_Client.pdb
+D:\GitDirectory\Study\C#Project\DB_Socket_Client\DB_Socket_Client\obj\Debug\DB_Socket_Client.csproj.AssemblyReference.cache
+D:\GitDirectory\Study\C#Project\DB_Socket_Client\DB_Socket_Client\obj\Debug\DB_Socket_Client.csproj.SuggestedBindingRedirects.cache
+D:\GitDirectory\Study\C#Project\DB_Socket_Client\DB_Socket_Client\obj\Debug\DB_Socket_Client.Form1.resources
+D:\GitDirectory\Study\C#Project\DB_Socket_Client\DB_Socket_Client\obj\Debug\DB_Socket_Client.Properties.Resources.resources
+D:\GitDirectory\Study\C#Project\DB_Socket_Client\DB_Socket_Client\obj\Debug\DB_Socket_Client.csproj.GenerateResource.cache
+D:\GitDirectory\Study\C#Project\DB_Socket_Client\DB_Socket_Client\obj\Debug\DB_Socket_Client.csproj.CoreCompileInputs.cache
+D:\GitDirectory\Study\C#Project\DB_Socket_Client\DB_Socket_Client\obj\Debug\DB_Socket_Client.exe
+D:\GitDirectory\Study\C#Project\DB_Socket_Client\DB_Socket_Client\obj\Debug\DB_Socket_Client.pdb
