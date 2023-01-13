@@ -62,7 +62,12 @@ namespace DB_Socket_Server
 
         private void button1_Click(object sender, EventArgs e)
         {
-            streamWriter1.WriteLine("서버에서 보냄");
+            streamWriter1.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : insert를 알림");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            streamWriter1.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : update를 알림");
         }
     }
 }

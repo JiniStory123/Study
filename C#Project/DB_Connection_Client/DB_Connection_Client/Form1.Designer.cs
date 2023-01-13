@@ -40,16 +40,19 @@
             this.bt_search_primary = new System.Windows.Forms.Button();
             this.group_search = new System.Windows.Forms.GroupBox();
             this.group_insert_update = new System.Windows.Forms.GroupBox();
+            this.label_date = new System.Windows.Forms.Label();
+            this.label_Author = new System.Windows.Forms.Label();
+            this.label_name = new System.Windows.Forms.Label();
+            this.label_primary = new System.Windows.Forms.Label();
             this.bt_update = new System.Windows.Forms.Button();
             this.bt_insert = new System.Windows.Forms.Button();
             this.txt_date = new System.Windows.Forms.TextBox();
             this.txt_infor = new System.Windows.Forms.TextBox();
             this.txt_name = new System.Windows.Forms.TextBox();
             this.txt_primary = new System.Windows.Forms.TextBox();
-            this.label_primary = new System.Windows.Forms.Label();
-            this.label_name = new System.Windows.Forms.Label();
-            this.label_Author = new System.Windows.Forms.Label();
-            this.label_date = new System.Windows.Forms.Label();
+            this.txt_ip = new System.Windows.Forms.TextBox();
+            this.bt_conncetion = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.group_search.SuspendLayout();
             this.group_insert_update.SuspendLayout();
             this.SuspendLayout();
@@ -64,7 +67,7 @@
             this.ch_date});
             this.list.FullRowSelect = true;
             this.list.HideSelection = false;
-            this.list.Location = new System.Drawing.Point(12, 12);
+            this.list.Location = new System.Drawing.Point(12, 130);
             this.list.Name = "list";
             this.list.Size = new System.Drawing.Size(533, 127);
             this.list.TabIndex = 0;
@@ -94,7 +97,7 @@
             // 
             // bt_book
             // 
-            this.bt_book.Location = new System.Drawing.Point(12, 145);
+            this.bt_book.Location = new System.Drawing.Point(12, 269);
             this.bt_book.Name = "bt_book";
             this.bt_book.Size = new System.Drawing.Size(254, 23);
             this.bt_book.TabIndex = 1;
@@ -103,7 +106,7 @@
             // 
             // bt_car
             // 
-            this.bt_car.Location = new System.Drawing.Point(291, 145);
+            this.bt_car.Location = new System.Drawing.Point(291, 269);
             this.bt_car.Name = "bt_car";
             this.bt_car.Size = new System.Drawing.Size(254, 23);
             this.bt_car.TabIndex = 2;
@@ -145,7 +148,7 @@
             this.group_search.Controls.Add(this.bt_delete);
             this.group_search.Controls.Add(this.bt_search_primary);
             this.group_search.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.group_search.Location = new System.Drawing.Point(12, 174);
+            this.group_search.Location = new System.Drawing.Point(12, 298);
             this.group_search.Name = "group_search";
             this.group_search.Size = new System.Drawing.Size(533, 51);
             this.group_search.TabIndex = 7;
@@ -165,11 +168,51 @@
             this.group_insert_update.Controls.Add(this.txt_name);
             this.group_insert_update.Controls.Add(this.txt_primary);
             this.group_insert_update.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.group_insert_update.Location = new System.Drawing.Point(0, 154);
+            this.group_insert_update.Location = new System.Drawing.Point(0, 386);
             this.group_insert_update.Name = "group_insert_update";
             this.group_insert_update.Size = new System.Drawing.Size(557, 79);
             this.group_insert_update.TabIndex = 8;
             this.group_insert_update.TabStop = false;
+            // 
+            // label_date
+            // 
+            this.label_date.AutoSize = true;
+            this.label_date.Font = new System.Drawing.Font("돋움", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label_date.Location = new System.Drawing.Point(426, 4);
+            this.label_date.Name = "label_date";
+            this.label_date.Size = new System.Drawing.Size(40, 16);
+            this.label_date.TabIndex = 9;
+            this.label_date.Text = "Date";
+            // 
+            // label_Author
+            // 
+            this.label_Author.AutoSize = true;
+            this.label_Author.Font = new System.Drawing.Font("돋움", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label_Author.Location = new System.Drawing.Point(288, 4);
+            this.label_Author.Name = "label_Author";
+            this.label_Author.Size = new System.Drawing.Size(55, 16);
+            this.label_Author.TabIndex = 8;
+            this.label_Author.Text = "Author";
+            // 
+            // label_name
+            // 
+            this.label_name.AutoSize = true;
+            this.label_name.Font = new System.Drawing.Font("돋움", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label_name.Location = new System.Drawing.Point(147, 4);
+            this.label_name.Name = "label_name";
+            this.label_name.Size = new System.Drawing.Size(49, 16);
+            this.label_name.TabIndex = 7;
+            this.label_name.Text = "Name";
+            // 
+            // label_primary
+            // 
+            this.label_primary.AutoSize = true;
+            this.label_primary.Font = new System.Drawing.Font("돋움", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label_primary.Location = new System.Drawing.Point(12, 4);
+            this.label_primary.Name = "label_primary";
+            this.label_primary.Size = new System.Drawing.Size(41, 16);
+            this.label_primary.TabIndex = 6;
+            this.label_primary.Text = "ISBN";
             // 
             // bt_update
             // 
@@ -221,51 +264,40 @@
             this.txt_primary.Size = new System.Drawing.Size(116, 21);
             this.txt_primary.TabIndex = 0;
             // 
-            // label_primary
+            // txt_ip
             // 
-            this.label_primary.AutoSize = true;
-            this.label_primary.Font = new System.Drawing.Font("돋움", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label_primary.Location = new System.Drawing.Point(12, 4);
-            this.label_primary.Name = "label_primary";
-            this.label_primary.Size = new System.Drawing.Size(41, 16);
-            this.label_primary.TabIndex = 6;
-            this.label_primary.Text = "ISBN";
+            this.txt_ip.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.txt_ip.Location = new System.Drawing.Point(12, 12);
+            this.txt_ip.Name = "txt_ip";
+            this.txt_ip.Size = new System.Drawing.Size(431, 21);
+            this.txt_ip.TabIndex = 9;
             // 
-            // label_name
+            // bt_conncetion
             // 
-            this.label_name.AutoSize = true;
-            this.label_name.Font = new System.Drawing.Font("돋움", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label_name.Location = new System.Drawing.Point(147, 4);
-            this.label_name.Name = "label_name";
-            this.label_name.Size = new System.Drawing.Size(49, 16);
-            this.label_name.TabIndex = 7;
-            this.label_name.Text = "Name";
+            this.bt_conncetion.Location = new System.Drawing.Point(449, 12);
+            this.bt_conncetion.Name = "bt_conncetion";
+            this.bt_conncetion.Size = new System.Drawing.Size(96, 23);
+            this.bt_conncetion.TabIndex = 10;
+            this.bt_conncetion.Text = "connection";
+            this.bt_conncetion.UseVisualStyleBackColor = true;
+            this.bt_conncetion.Click += new System.EventHandler(this.bt_conncetion_Click);
             // 
-            // label_Author
+            // richTextBox1
             // 
-            this.label_Author.AutoSize = true;
-            this.label_Author.Font = new System.Drawing.Font("돋움", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label_Author.Location = new System.Drawing.Point(288, 4);
-            this.label_Author.Name = "label_Author";
-            this.label_Author.Size = new System.Drawing.Size(55, 16);
-            this.label_Author.TabIndex = 8;
-            this.label_Author.Text = "Author";
-            // 
-            // label_date
-            // 
-            this.label_date.AutoSize = true;
-            this.label_date.Font = new System.Drawing.Font("돋움", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label_date.Location = new System.Drawing.Point(426, 4);
-            this.label_date.Name = "label_date";
-            this.label_date.Size = new System.Drawing.Size(40, 16);
-            this.label_date.TabIndex = 9;
-            this.label_date.Text = "Date";
+            this.richTextBox1.Location = new System.Drawing.Point(12, 39);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(533, 85);
+            this.richTextBox1.TabIndex = 11;
+            this.richTextBox1.Text = "";
             // 
             // group_insert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 233);
+            this.ClientSize = new System.Drawing.Size(557, 465);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.bt_conncetion);
+            this.Controls.Add(this.txt_ip);
             this.Controls.Add(this.group_search);
             this.Controls.Add(this.bt_car);
             this.Controls.Add(this.bt_book);
@@ -278,6 +310,7 @@
             this.group_insert_update.ResumeLayout(false);
             this.group_insert_update.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -305,6 +338,9 @@
         private System.Windows.Forms.Label label_Author;
         private System.Windows.Forms.Label label_name;
         private System.Windows.Forms.Label label_primary;
+        private System.Windows.Forms.TextBox txt_ip;
+        private System.Windows.Forms.Button bt_conncetion;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 

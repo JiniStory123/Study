@@ -12,11 +12,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net.Sockets;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Threading;
 
 namespace DB_Connection_Client
 {
@@ -31,6 +35,11 @@ namespace DB_Connection_Client
         string connStr = "Host=192.168.201.151;Username=postgres;Password=12345678;Database=book_car";
         // 로컬
         //string connStr = "Host=localhost;Username=postgres;Password=1234;Database=study"; 
+        string str_serverURL = "127.0.0.1";
+        string str_serverPort = "5555";
+
+        StreamReader streamReader;  // 데이타 읽기 위한 스트림리더
+        StreamWriter streamWriter;  // 데이타 쓰기 위한 스트림라이터
 
         public group_insert()
         {
@@ -60,6 +69,146 @@ namespace DB_Connection_Client
             this.bt_search_primary.Click += new System.EventHandler(this.bt_search_primary_Click);
             this.bt_insert.Click += new System.EventHandler(this.bt_insert_Click);
             this.bt_update.Click += new System.EventHandler(this.bt_update_Click);
+        }
+
+        private void writeRichTextbox(string str)  // richTextbox1 에 쓰기 함수
+        {
+            richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.AppendText(str + "\r\n"); }); // 데이타를 수신창에 표시, 반드시 invoke 사용. 충돌피함.
+            richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.ScrollToCaret(); });  // 스크롤을 젤 밑으로.
+        }
+
+        private void connect()
+        {
+            str_serverURL = txt_ip.Text;
+            TcpClient tcpClient1 = new TcpClient();  // TcpClient 객체 생성
+            IPEndPoint ipEnd = new IPEndPoint(IPAddress.Parse(str_serverURL), int.Parse(str_serverPort));  // IP주소와 Port번호를 할당
+            tcpClient1.Connect(ipEnd);  // 서버에 연결 요청
+            writeRichTextbox("서버 연결됨...");
+
+            streamReader = new StreamReader(tcpClient1.GetStream());  // 읽기 스트림 연결
+            streamWriter = new StreamWriter(tcpClient1.GetStream());  // 쓰기 스트림 연결
+            streamWriter.AutoFlush = true;  // 쓰기 버퍼 자동으로 뭔가 처리..
+
+            while (tcpClient1.Connected)  // 클라이언트가 연결되어 있는 동안
+            {
+                string receiveData1 = streamReader.ReadLine();  // 수신 데이타를 읽어서 receiveData1 변수에 저장
+                if(!receiveData1.Equals(""))
+                {
+                    if (connMode == 1)
+                    {
+                        commandText = "select * from book";
+                    }
+                    else if (connMode == 2)
+                    {
+                        commandText = "select * from car";
+                    }
+                    Receive_Server();
+                }
+                writeRichTextbox(receiveData1);  // 데이타를 수신창에 쓰기
+            }
+        }
+
+        void Receive_Server()
+        {
+            if (list.InvokeRequired)
+            {
+                list.Invoke(new MethodInvoker(delegate
+                {
+                    list.Items.Clear();
+                }));
+            }
+            else
+            {
+                list.Items.Clear();
+            }
+
+            if(txt_search.InvokeRequired)
+            {
+                txt_search.Invoke(new MethodInvoker(delegate
+                {
+                    txt_search.Text = string.Empty;
+                }));
+            }
+            else
+            {
+                txt_search.Text = string.Empty;
+            }
+            using (var conn = new NpgsqlConnection(connStr))
+            {
+                try
+                {
+                    conn.Open();
+                    using (var cmd = new NpgsqlCommand())
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = commandText;
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            ListViewItem item;
+
+                            while (reader.Read())
+                            {
+                                DateTime date = (DateTime)reader["date"];
+                                if (connMode == 1)
+                                {
+                                    string[] row = { reader["isbn"].ToString(),
+                                                      reader["name"].ToString(),
+                                                      reader["author"].ToString(),
+                                                      date.ToString("yyyy-MM-dd")};
+                                    item = new ListViewItem(row);
+
+                                    if (list.InvokeRequired)
+                                    {
+                                        list.Invoke(new MethodInvoker(delegate 
+                                        { 
+                                            list.Items.Add(item);
+                                            list.EnsureVisible(list.Items.Count - 1);
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        list.Items.Add(item);
+                                        list.EnsureVisible(list.Items.Count - 1);
+                                    }
+                                }
+                                else if (connMode == 2)
+                                {
+                                    string[] row = { reader["number"].ToString(),
+                                                      reader["name"].ToString(),
+                                                      reader["company"].ToString(),
+                                                      date.ToString("yyyy-MM-dd")};
+                                    item = new ListViewItem(row);
+                                    if (list.InvokeRequired)
+                                    {
+                                        list.Invoke(new MethodInvoker(delegate
+                                        {
+                                            list.Items.Add(item);
+                                            list.EnsureVisible(list.Items.Count - 1);
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        list.Items.Add(item);
+                                        list.EnsureVisible(list.Items.Count - 1);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    print_error(e);
+                }
+            }
+        }
+
+        private void bt_conncetion_Click(object sender, EventArgs e)
+        {
+            Thread thread1 = new Thread(connect);  // Thread 객채 생성, Form과는 별도 쓰레드에서 connect 함수가 실행됨.
+            thread1.IsBackground = true;  // Form이 종료되면 thread1도 종료.
+            thread1.Start();  // thread1 시작.
         }
 
         void init_Column()
@@ -116,7 +265,15 @@ namespace DB_Connection_Client
         void Reading_Data(NpgsqlCommand cmd)
         {
             // DB 데이터 읽어와 리스트뷰에 표시하기
-            list.Items.Clear(); // 일시적으로 리스트뷰 아이템 모두 제거
+                // 일시적으로 리스트뷰 아이템 모두 제거
+            if (list.InvokeRequired)
+            {
+                list.Invoke(new MethodInvoker(delegate { list.Items.Clear(); }));
+            }
+            else
+            {
+                list.Items.Clear();
+            }
             using (var reader = cmd.ExecuteReader())
             {
                 ListViewItem item;
@@ -131,7 +288,15 @@ namespace DB_Connection_Client
                                                       reader["author"].ToString(),
                                                       date.ToString("yyyy-MM-dd")};
                         item = new ListViewItem(row);
-                        list.Items.Add(item);
+                        
+                        if(list.InvokeRequired)
+                        {
+                            list.Invoke(new MethodInvoker(delegate { list.Items.Add(item); }));
+                        }
+                        else
+                        {
+                            list.Items.Add(item);
+                        }
                     }
                     else if (connMode == 2)
                     {
@@ -140,7 +305,14 @@ namespace DB_Connection_Client
                                                       reader["company"].ToString(),
                                                       date.ToString("yyyy-MM-dd")};
                         item = new ListViewItem(row);
-                        list.Items.Add(item);
+                        if (list.InvokeRequired)
+                        {
+                            list.Invoke(new MethodInvoker(delegate { list.Items.Add(item); }));
+                        }
+                        else
+                        {
+                            list.Items.Add(item);
+                        }
                     }
                     init_Column();
                 }
@@ -294,6 +466,8 @@ namespace DB_Connection_Client
                             commandText = "select * from car";
                         }
                         DB_Connection_Reading();
+                        streamWriter.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : delete를 알림");
+
                     }
                 }
                 catch (Exception e)
@@ -480,11 +654,13 @@ namespace DB_Connection_Client
                     group_insert_update.Visible = false;
                     break;
 
+               /*
                 case Keys.F2:
                     this.Size = new Size(573, 292);
                     group_search.Visible = false;
                     group_insert_update.Visible = true;
                     break;
+               */
             }
         }
 
@@ -509,5 +685,7 @@ namespace DB_Connection_Client
             }
 
         }
+
+        
     }
 }
