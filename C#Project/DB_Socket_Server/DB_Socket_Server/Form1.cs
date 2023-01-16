@@ -19,7 +19,6 @@ namespace DB_Socket_Server
         public Form1()
         {
             InitializeComponent();
-            start();
         }
 
         private void start()
@@ -34,7 +33,12 @@ namespace DB_Socket_Server
 
         private void connect()
         {
-            string str_ip = "127.0.0.1";
+            if(txt_ip.Text.Equals(""))
+            {
+                return;
+            }
+
+            string str_ip = txt_ip.Text;
             string str_port = "5555";
             TcpListener tcpListener = new TcpListener(IPAddress.Parse(str_ip), int.Parse(str_port));
             tcpListener.Start(); // 서버 시작
@@ -68,6 +72,11 @@ namespace DB_Socket_Server
         private void button2_Click(object sender, EventArgs e)
         {
             streamWriter1.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : update를 알림");
+        }
+
+        private void bt_connection_Click(object sender, EventArgs e)
+        {
+            start();
         }
     }
 }
