@@ -168,7 +168,7 @@
             this.group_insert_update.Controls.Add(this.txt_name);
             this.group_insert_update.Controls.Add(this.txt_primary);
             this.group_insert_update.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.group_insert_update.Location = new System.Drawing.Point(0, 386);
+            this.group_insert_update.Location = new System.Drawing.Point(0, 355);
             this.group_insert_update.Name = "group_insert_update";
             this.group_insert_update.Size = new System.Drawing.Size(557, 79);
             this.group_insert_update.TabIndex = 8;
@@ -294,7 +294,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 465);
+            this.ClientSize = new System.Drawing.Size(557, 434);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.bt_conncetion);
             this.Controls.Add(this.txt_ip);

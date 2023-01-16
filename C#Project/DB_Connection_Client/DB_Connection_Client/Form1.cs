@@ -45,7 +45,7 @@ namespace DB_Connection_Client
         {
             InitializeComponent();
 
-            group_insert_update.Visible = false;
+            //group_insert_update.Visible = false;
             // 키보드 입력
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(Form_KeyDown); 
@@ -369,6 +369,7 @@ namespace DB_Connection_Client
                         DB_Connection_Reading();
                         list.EnsureVisible(list.Items.Count-1);
                         init_txt();
+                        streamWriter.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : insert를 알림");
                     }
 
                 }
@@ -404,6 +405,7 @@ namespace DB_Connection_Client
                         }
                         DB_Connection_Reading();
                         init_txt();
+                        streamWriter.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : update를 알림");
                     }
                 }
                 catch (Exception e)
