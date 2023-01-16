@@ -112,6 +112,7 @@ namespace DB_Connection_Client
                         }
                         Receive_Server();
                     }
+
                 }
                 writeRichTextbox(receiveData1);
             }
