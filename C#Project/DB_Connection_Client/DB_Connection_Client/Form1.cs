@@ -71,45 +71,54 @@ namespace DB_Connection_Client
             this.bt_update.Click += new System.EventHandler(this.bt_update_Click);
         }
 
-        private void writeRichTextbox(string str)  // richTextbox1 에 쓰기 함수
+        private void writeRichTextbox(string str)
         {
-            richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.AppendText(str + "\r\n"); }); // 데이타를 수신창에 표시, 반드시 invoke 사용. 충돌피함.
-            richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.ScrollToCaret(); });  // 스크롤을 젤 밑으로.
+            richTextBox1.Invoke(new MethodInvoker(delegate
+            {
+                richTextBox1.AppendText(str + "\r\n");
+            }));
+            richTextBox1.Invoke(new MethodInvoker(delegate
+            {
+                richTextBox1.ScrollToCaret();
+            }));
         }
 
         private void connect()
         {
             str_serverURL = txt_ip.Text;
-            TcpClient tcpClient1 = new TcpClient();  // TcpClient 객체 생성
-            IPEndPoint ipEnd = new IPEndPoint(IPAddress.Parse(str_serverURL), int.Parse(str_serverPort));  // IP주소와 Port번호를 할당
-            tcpClient1.Connect(ipEnd);  // 서버에 연결 요청
+            TcpClient tcpClient1 = new TcpClient();
+            IPEndPoint ipEnd = new IPEndPoint(IPAddress.Parse(str_serverURL), int.Parse(str_serverPort));
+            tcpClient1.Connect(ipEnd);  // 서버에 연결
             writeRichTextbox("서버 연결됨...");
 
-            streamReader = new StreamReader(tcpClient1.GetStream());  // 읽기 스트림 연결
-            streamWriter = new StreamWriter(tcpClient1.GetStream());  // 쓰기 스트림 연결
-            streamWriter.AutoFlush = true;  // 쓰기 버퍼 자동으로 뭔가 처리..
+            streamReader = new StreamReader(tcpClient1.GetStream());  // 읽기 스트림
+            streamWriter = new StreamWriter(tcpClient1.GetStream());  // 쓰기 스트림
+            streamWriter.AutoFlush = true;  // 쓰기 버퍼 자동 처리
 
-            while (tcpClient1.Connected)  // 클라이언트가 연결되어 있는 동안
+            while (tcpClient1.Connected)
             {
-                string receiveData1 = streamReader.ReadLine();  // 수신 데이타를 읽어서 receiveData1 변수에 저장
+                string receiveData1 = streamReader.ReadLine();
                 if(!receiveData1.Equals(""))
                 {
-                    if (connMode == 1)
+                    if(isSuccess)
                     {
-                        commandText = "select * from book";
+                        if (connMode == 1)
+                        {
+                            commandText = "select * from book";
+                        }
+                        else if (connMode == 2)
+                        {
+                            commandText = "select * from car";
+                        }
+                        Receive_Server();
                     }
-                    else if (connMode == 2)
-                    {
-                        commandText = "select * from car";
-                    }
-                    Receive_Server();
                 }
-                writeRichTextbox(receiveData1);  // 데이타를 수신창에 쓰기
+                writeRichTextbox(receiveData1);
             }
         }
 
         void Receive_Server()
-        {
+        {   // 서버 접속 중 리스트 업데이트를 위한 메소드 (Invoke 적용)
             if (list.InvokeRequired)
             {
                 list.Invoke(new MethodInvoker(delegate
@@ -206,9 +215,9 @@ namespace DB_Connection_Client
 
         private void bt_conncetion_Click(object sender, EventArgs e)
         {
-            Thread thread1 = new Thread(connect);  // Thread 객채 생성, Form과는 별도 쓰레드에서 connect 함수가 실행됨.
-            thread1.IsBackground = true;  // Form이 종료되면 thread1도 종료.
-            thread1.Start();  // thread1 시작.
+            Thread thread1 = new Thread(connect);
+            thread1.IsBackground = true; 
+            thread1.Start();
         }
 
         void init_Column()
@@ -256,7 +265,7 @@ namespace DB_Connection_Client
         }
 
         void print_error(Exception e)
-        {
+        {   // 에러 받아와 메세지 박스 표시
             Console.WriteLine("============== Error ==============");
             Console.WriteLine(e.Message);
             MessageBox.Show("에러가 발생했습니다.\n\n============== Error ==============\n\n" + e.Message, "Error");
@@ -265,15 +274,8 @@ namespace DB_Connection_Client
         void Reading_Data(NpgsqlCommand cmd)
         {
             // DB 데이터 읽어와 리스트뷰에 표시하기
-                // 일시적으로 리스트뷰 아이템 모두 제거
-            if (list.InvokeRequired)
-            {
-                list.Invoke(new MethodInvoker(delegate { list.Items.Clear(); }));
-            }
-            else
-            {
-                list.Items.Clear();
-            }
+            // 일시적으로 리스트뷰 아이템 모두 제거
+            list.Items.Clear();
             using (var reader = cmd.ExecuteReader())
             {
                 ListViewItem item;
@@ -288,15 +290,7 @@ namespace DB_Connection_Client
                                                       reader["author"].ToString(),
                                                       date.ToString("yyyy-MM-dd")};
                         item = new ListViewItem(row);
-                        
-                        if(list.InvokeRequired)
-                        {
-                            list.Invoke(new MethodInvoker(delegate { list.Items.Add(item); }));
-                        }
-                        else
-                        {
-                            list.Items.Add(item);
-                        }
+                        list.Items.Add(item);
                     }
                     else if (connMode == 2)
                     {
@@ -305,14 +299,7 @@ namespace DB_Connection_Client
                                                       reader["company"].ToString(),
                                                       date.ToString("yyyy-MM-dd")};
                         item = new ListViewItem(row);
-                        if (list.InvokeRequired)
-                        {
-                            list.Invoke(new MethodInvoker(delegate { list.Items.Add(item); }));
-                        }
-                        else
-                        {
-                            list.Items.Add(item);
-                        }
+                        list.Items.Add(item);
                     }
                     init_Column();
                 }
@@ -369,6 +356,7 @@ namespace DB_Connection_Client
                         DB_Connection_Reading();
                         list.EnsureVisible(list.Items.Count-1);
                         init_txt();
+                        list.EnsureVisible(list.Items.Count - 1);
                         streamWriter.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : insert를 알림");
                     }
 
@@ -405,6 +393,7 @@ namespace DB_Connection_Client
                         }
                         DB_Connection_Reading();
                         init_txt();
+                        list.EnsureVisible(list.Items.Count - 1);
                         streamWriter.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : update를 알림");
                     }
                 }
@@ -685,9 +674,6 @@ namespace DB_Connection_Client
                 rearPrimary = str_primary;
                 Console.WriteLine(rearPrimary);
             }
-
         }
-
-        
     }
 }
