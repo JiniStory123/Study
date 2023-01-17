@@ -33,10 +33,10 @@ D:\GitDirectory\Study\C#Project\DB_Connection_Lite\DB_Connection_Lite\bin\Debug\
 D:\GitDirectory\Study\C#Project\DB_Connection_Lite\DB_Connection_Lite\bin\Debug\System.ValueTuple.xml
 D:\GitDirectory\Study\C#Project\DB_Connection_Lite\DB_Connection_Lite\obj\Debug\DB_Connection_Lite.csproj.AssemblyReference.cache
 D:\GitDirectory\Study\C#Project\DB_Connection_Lite\DB_Connection_Lite\obj\Debug\DB_Connection_Lite.csproj.SuggestedBindingRedirects.cache
-D:\GitDirectory\Study\C#Project\DB_Connection_Lite\DB_Connection_Lite\obj\Debug\DB_Connection_Lite.Form1.resources
 D:\GitDirectory\Study\C#Project\DB_Connection_Lite\DB_Connection_Lite\obj\Debug\DB_Connection_Lite.Properties.Resources.resources
 D:\GitDirectory\Study\C#Project\DB_Connection_Lite\DB_Connection_Lite\obj\Debug\DB_Connection_Lite.csproj.GenerateResource.cache
 D:\GitDirectory\Study\C#Project\DB_Connection_Lite\DB_Connection_Lite\obj\Debug\DB_Connection_Lite.csproj.CoreCompileInputs.cache
 D:\GitDirectory\Study\C#Project\DB_Connection_Lite\DB_Connection_Lite\obj\Debug\DB_Connection_Lite.csproj.CopyComplete
 D:\GitDirectory\Study\C#Project\DB_Connection_Lite\DB_Connection_Lite\obj\Debug\DB_Connection_Lite.exe
 D:\GitDirectory\Study\C#Project\DB_Connection_Lite\DB_Connection_Lite\obj\Debug\DB_Connection_Lite.pdb
+D:\GitDirectory\Study\C#Project\DB_Connection_Lite\DB_Connection_Lite\obj\Debug\DB_Connection_Lite.DBClient.resources

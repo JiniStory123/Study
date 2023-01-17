@@ -1,6 +1,6 @@
 ﻿namespace DB_Connection_Lite
 {
-    partial class Form1
+    partial class DBClient
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -47,9 +47,11 @@
             // 
             // rich_state
             // 
+            this.rich_state.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.rich_state.Location = new System.Drawing.Point(12, 39);
             this.rich_state.Name = "rich_state";
-            this.rich_state.Size = new System.Drawing.Size(533, 85);
+            this.rich_state.ReadOnly = true;
+            this.rich_state.Size = new System.Drawing.Size(533, 106);
             this.rich_state.TabIndex = 18;
             this.rich_state.Text = "";
             // 
@@ -59,7 +61,7 @@
             this.bt_conncetion.Name = "bt_conncetion";
             this.bt_conncetion.Size = new System.Drawing.Size(96, 23);
             this.bt_conncetion.TabIndex = 17;
-            this.bt_conncetion.Text = "connection";
+            this.bt_conncetion.Text = "Connection";
             this.bt_conncetion.UseVisualStyleBackColor = true;
             this.bt_conncetion.Click += new System.EventHandler(this.bt_conncetion_Click);
             // 
@@ -78,7 +80,7 @@
             this.group_search.Controls.Add(this.bt_delete);
             this.group_search.Controls.Add(this.bt_search);
             this.group_search.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.group_search.Location = new System.Drawing.Point(12, 298);
+            this.group_search.Location = new System.Drawing.Point(12, 319);
             this.group_search.Name = "group_search";
             this.group_search.Size = new System.Drawing.Size(533, 51);
             this.group_search.TabIndex = 15;
@@ -116,7 +118,7 @@
             // 
             // bt_car
             // 
-            this.bt_car.Location = new System.Drawing.Point(291, 269);
+            this.bt_car.Location = new System.Drawing.Point(291, 290);
             this.bt_car.Name = "bt_car";
             this.bt_car.Size = new System.Drawing.Size(254, 23);
             this.bt_car.TabIndex = 14;
@@ -126,7 +128,7 @@
             // 
             // bt_book
             // 
-            this.bt_book.Location = new System.Drawing.Point(12, 269);
+            this.bt_book.Location = new System.Drawing.Point(12, 290);
             this.bt_book.Name = "bt_book";
             this.bt_book.Size = new System.Drawing.Size(254, 23);
             this.bt_book.TabIndex = 13;
@@ -144,13 +146,12 @@
             this.ch_date});
             this.list_table.FullRowSelect = true;
             this.list_table.HideSelection = false;
-            this.list_table.Location = new System.Drawing.Point(12, 130);
+            this.list_table.Location = new System.Drawing.Point(12, 151);
             this.list_table.Name = "list_table";
             this.list_table.Size = new System.Drawing.Size(533, 127);
             this.list_table.TabIndex = 12;
             this.list_table.UseCompatibleStateImageBehavior = false;
             this.list_table.View = System.Windows.Forms.View.Details;
-            this.list_table.Click += new System.EventHandler(this.list_table_Click);
             // 
             // ch_primary
             // 
@@ -172,11 +173,11 @@
             this.ch_date.Text = "Date";
             this.ch_date.Width = 80;
             // 
-            // Form1
+            // DBClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 360);
+            this.ClientSize = new System.Drawing.Size(556, 378);
             this.Controls.Add(this.rich_state);
             this.Controls.Add(this.bt_conncetion);
             this.Controls.Add(this.txt_ip);
@@ -184,9 +185,9 @@
             this.Controls.Add(this.bt_car);
             this.Controls.Add(this.bt_book);
             this.Controls.Add(this.list_table);
-            this.Name = "Form1";
-            this.Text = "데이터베이스";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Name = "DBClient";
+            this.Text = "데이터베이스 조작 프로그램 (Select, Delete)";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_FormClosing);
             this.group_search.ResumeLayout(false);
             this.group_search.PerformLayout();
             this.ResumeLayout(false);
