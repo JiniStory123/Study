@@ -12,15 +12,16 @@ using System.Net; // 추가
 using System.Net.Sockets; // 추가
 using System.IO; // 추가
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data.Common;
 
 namespace DB_Socket_Client
 {
     public partial class Form1 : Form
     {
+        bool isconnection = false;
         public Form1()
         {
             InitializeComponent();
-            start();
         }
 
         StreamReader streamReader;  // 데이타 읽기 위한 스트림리더
@@ -35,22 +36,48 @@ namespace DB_Socket_Client
 
         private void connect()  // thread1에 연결된 함수. 메인폼과는 별도로 동작한다.
         {
-            TcpClient tcpClient1 = new TcpClient();  // TcpClient 객체 생성
-            string str_ip = "127.0.0.1";
-            string str_port = "5555";
-            IPEndPoint ipEnd = new IPEndPoint(IPAddress.Parse(str_ip), int.Parse(str_port));  // IP주소와 Port번호를 할당
-            tcpClient1.Connect(ipEnd);  // 서버에 연결 요청
-            writeRichTextbox("서버 연결됨...");
-
-            streamReader = new StreamReader(tcpClient1.GetStream());  // 읽기 스트림 연결
-            streamWriter = new StreamWriter(tcpClient1.GetStream());  // 쓰기 스트림 연결
-            streamWriter.AutoFlush = true;  // 쓰기 버퍼 자동으로 뭔가 처리..
-
-            while (tcpClient1.Connected)  // 클라이언트가 연결되어 있는 동안
+            if (txt_ip.Text.Equals(""))
             {
-                string receiveData1 = streamReader.ReadLine();  // 수신 데이타를 읽어서 receiveData1 변수에 저장
-                writeRichTextbox(receiveData1);  // 데이타를 수신창에 쓰기
+                return;
             }
+
+            
+            string str_ip = txt_ip.Text;
+            string str_port = "5555";
+
+
+            try
+            {
+                TcpClient tcpClient1 = new TcpClient();  // TcpClient 객체 생성
+                IPEndPoint ipEnd = new IPEndPoint(IPAddress.Parse(str_ip), int.Parse(str_port));  // IP주소와 Port번호를 할당
+                tcpClient1.Connect(ipEnd);  // 서버에 연결 요청
+                writeRichTextbox("서버 연결됨...");
+                isconnection = true;
+
+                streamReader = new StreamReader(tcpClient1.GetStream());  // 읽기 스트림 연결
+                streamWriter = new StreamWriter(tcpClient1.GetStream());  // 쓰기 스트림 연결
+                streamWriter.AutoFlush = true;  // 쓰기 버퍼 자동으로 뭔가 처리..
+
+                while (true)  // 클라이언트가 연결되어 있는 동안
+                {
+                    string receiveData1 = streamReader.ReadLine();  // 수신 데이타를 읽어서 receiveData1 변수에 저장
+                    if (receiveData1 == null || receiveData1.Equals("exit"))
+                    {
+                        writeRichTextbox("서버가 종료됨...\n");
+                        streamReader.Close();
+                        streamWriter.Close();
+                        tcpClient1.Close();
+                        isconnection = false;
+                        break;
+                    }
+                    writeRichTextbox(receiveData1);  // 데이타를 수신창에 쓰기
+                }
+            }
+            catch (SocketException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            
         }
 
         private void writeRichTextbox(string data)  // richTextbox1 에 쓰기 함수
@@ -61,7 +88,20 @@ namespace DB_Socket_Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            streamWriter.WriteLine("클라이언트에서 보냄");   // 스트림라이터를 통해 데이타를 전송
+            streamWriter.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : delete를 알림");
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isconnection == true)
+            {
+                streamWriter.WriteLine("exit");
+            }
+        }
+
+        private void bt_connection_Click(object sender, EventArgs e)
+        {
+            start();
         }
     }
 }

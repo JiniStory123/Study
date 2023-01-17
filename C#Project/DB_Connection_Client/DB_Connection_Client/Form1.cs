@@ -276,7 +276,10 @@ namespace DB_Connection_Client
         {
             // DB 데이터 읽어와 리스트뷰에 표시하기
             // 일시적으로 리스트뷰 아이템 모두 제거
-            list.Items.Clear();
+            list.Invoke(new MethodInvoker(delegate
+            {
+                list.Items.Clear();
+            }));
             using (var reader = cmd.ExecuteReader())
             {
                 ListViewItem item;
