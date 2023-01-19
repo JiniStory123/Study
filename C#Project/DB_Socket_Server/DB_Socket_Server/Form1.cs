@@ -59,7 +59,6 @@ namespace DB_Socket_Server
 
                 while(true)
                 {
-                    isconnection = true;
                     TcpClient tcpClient1 = tcpListener.AcceptTcpClient();
                     writeRichTextbox("클라이언트 연결됨...");
 
@@ -69,6 +68,7 @@ namespace DB_Socket_Server
 
                     while (true)
                     {
+                        isconnection = true;
                         string receiveData1 = streamReader1.ReadLine();
                         if (receiveData1 == null || receiveData1.Equals("exit"))
                         {

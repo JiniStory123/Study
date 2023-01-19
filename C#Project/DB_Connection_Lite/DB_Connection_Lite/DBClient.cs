@@ -44,11 +44,14 @@ namespace DB_Connection_Lite
         string str_serverURL = "127.0.0.1";
         string str_serverPort = "5555";
 
+        TcpClient client;
         StreamReader streamReader;  // 데이타 읽기 위한 스트림리더
         StreamWriter streamWriter;  // 데이타 쓰기 위한 스트림라이터
 
         // SQL 구문
         string str_commandText = "";
+        string str_selectBook = "select * from book order by name";
+        string str_selectCar = "select * from car order by name";
 
         public DBClient()
         {
@@ -67,6 +70,7 @@ namespace DB_Connection_Lite
             bt_car.Enabled = false;
             bt_search.Enabled = false;
             bt_delete.Enabled = false;
+            bt_disconnection.Enabled = false;
             txt_search.Enabled = false;
         }
 
@@ -188,6 +192,18 @@ namespace DB_Connection_Lite
             {
                 bt_conncetion.Enabled = false;
             }
+            // bt_desconnection 버튼 활성화
+            if (bt_disconnection.InvokeRequired == true)
+            {
+                bt_disconnection.Invoke((MethodInvoker)delegate
+                {
+                    bt_disconnection.Enabled = true;
+                });
+            }
+            else
+            {
+                bt_disconnection.Enabled = true;
+            }
             // bt_book 활성화
             if (bt_book.InvokeRequired == true)
             {
@@ -278,6 +294,18 @@ namespace DB_Connection_Lite
             {
                 bt_conncetion.Enabled = true;
             }
+            // bt_desconnection 버튼 비활성화
+            if (bt_disconnection.InvokeRequired == true)
+            {
+                bt_disconnection.Invoke((MethodInvoker)delegate
+                {
+                    bt_disconnection.Enabled = false;
+                });
+            }
+            else
+            {
+                bt_disconnection.Enabled = false;
+            }
             // bt_book 비활성화
             if (bt_book.InvokeRequired == true)
             {
@@ -364,16 +392,16 @@ namespace DB_Connection_Lite
             // TextBox가 비어있으면
             if (txt_ip.Text.Equals(""))
             {
-                writeRichBox("IP 주소는 빈값으로 둘 수 없습니다.");
+                writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : IP 주소는 빈값으로 둘 수 없습니다");
                 return;
             }
 
+            // IP 형식에 맞지 않으면
             IPAddress ip;
             bool valid = IPAddress.TryParse(txt_ip.Text, out ip);
-
             if (valid == false)
             {
-                writeRichBox("IP 주소가 올바르지 않습니다.");
+                writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : IP 주소가 올바르지 않습니다");
                 return;
             }
 
@@ -395,13 +423,13 @@ namespace DB_Connection_Lite
 
             try
             {
-                TcpClient client = new TcpClient();
+                client = new TcpClient();
                 IPEndPoint ipEnd = new IPEndPoint(IPAddress.Parse(str_serverURL), int.Parse(str_serverPort));
                 client.Connect(ipEnd);
 
                 // 접속 성공
                 connection_successful();
-                writeRichBox("접속에 성공하였습니다 " + str_serverURL + ":" + str_serverPort);
+                writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : 접속에 성공하였습니다 " + str_serverURL + ":" + str_serverPort);
                 isConnection= true;
 
                 // 최초 table 먼저 list에 표시하기
@@ -423,15 +451,17 @@ namespace DB_Connection_Lite
 
                 while (true)
                 {
+                    // 반복하면서 서버의 메시지를 읽음
                     string receiveData = streamReader.ReadLine();
-                    // 종료 신호
+                    // 서버로부터의 통신 종료 or 종료 신호 메시지
                     if (receiveData == null || receiveData.Equals("exit"))
                     {
-                        writeRichBox("서버로부터 통신이 종료되었습니다\n");
+                        writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : 서버로부터 통신이 종료되었습니다");
                         streamReader.Close();
                         streamWriter.Close();
                         client.Close();
                         isConnection = false;
+                        isSuccess = false;
 
                         // 리스트 비우기 (Invoke)
                         if(list_table.InvokeRequired == true)
@@ -449,38 +479,29 @@ namespace DB_Connection_Lite
                         disconnect();
                         break;
                     }
+                    Console.WriteLine(receiveData);
                     writeRichBox(receiveData);
 
+                    // table 접속 중일때
                     if (isSuccess)
                     {
+                        // 접속table에 따라
                         if (connMode == 1)
                         {
-                            str_commandText = "select * from book";
+                            str_commandText = str_selectBook;
                         }
                         else if (connMode == 2)
                         {
-                            str_commandText = "select * from car";
+                            str_commandText = str_selectCar;
                         }
                         DB_Connection();
-
-                        if (list_table.InvokeRequired == true)
-                        {
-                            list_table.Invoke((MethodInvoker)delegate
-                            {
-                                list_table.EnsureVisible(list_table.Items.Count - 1);
-                            });
-                        }
-                        else
-                        {
-                            list_table.EnsureVisible(list_table.Items.Count - 1);
-                        }
                     }
                 }
             }
             catch (SocketException e)
             {
                 //print_error(e);
-                writeRichBox(e.Message);
+                writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : "+ e.Message);
                 disconnect();
             }
         }
@@ -606,14 +627,14 @@ namespace DB_Connection_Lite
                 {
                     if(!result.Equals(""))
                     {
-                        streamWriter.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : \"" + result + "\" 검색");
+                        streamWriter.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : \"" + result + "\" 검색 알림");
                     }
                 }
             }
         }
 
         // DB 데이터 삭제하기
-        private void DB_Delete(string input)
+        private void DB_Delete(string input, string inputName)
         {
             using (var conn = new NpgsqlConnection(str_DBURL))
             {
@@ -638,11 +659,11 @@ namespace DB_Connection_Lite
                         list_table.Items.Clear();
                         if (connMode == 1)
                         {
-                            str_commandText = "select * from book";
+                            str_commandText = str_selectBook;
                         }
                         else if (connMode == 2)
                         {
-                            str_commandText = "select * from car";
+                            str_commandText = str_selectCar;
                         }
                         DB_Connection();
                         
@@ -655,7 +676,7 @@ namespace DB_Connection_Lite
                                 mode = "BOOK TABLE";
                             if (connMode == 2)
                                 mode = "CAR TABLE";
-                            streamWriter.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : " + mode + " DELETE를 알림");
+                            streamWriter.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : " + mode + " \"" + inputName + "\" DELETE 알림");
                         }
                     }
                 }
@@ -672,7 +693,7 @@ namespace DB_Connection_Lite
         private void bt_book_Click(object sender, EventArgs e)
         {
             connMode = 1;
-            str_commandText = "select * from book";
+            str_commandText = str_selectBook;
             DB_Connection();
         }
 
@@ -680,7 +701,7 @@ namespace DB_Connection_Lite
         private void bt_car_Click(object sender, EventArgs e)
         {
             connMode = 2;
-            str_commandText = "select * from car";
+            str_commandText = str_selectCar;
             DB_Connection();
         }
 
@@ -690,12 +711,23 @@ namespace DB_Connection_Lite
             socket_start();
         }
 
+        // Disconnection 버튼
+        private void bt_disconnection_Click(object sender, EventArgs e)
+        {
+            if (isConnection == true)
+            {
+                streamWriter.WriteLine("exit");
+            }
+            disconnect();
+        }
+
         // Search 버튼
         private void bt_search_Click(object sender, EventArgs e)
         {
             // 테이블엔 접속했는지
             if (isSuccess == false)
             {
+                writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : 접속한 테이블이 없습니다");
                 return;
             }
 
@@ -706,28 +738,28 @@ namespace DB_Connection_Lite
             {
                 if (connMode == 1)
                 {
-                    str_commandText = "select * from book";
+                    str_commandText = str_selectBook;
                 }
                 else if (connMode == 2)
                 {
-                    str_commandText = "select * from car";
+                    str_commandText = str_selectCar;
                 }
             }
             else
             {
                 if (connMode == 1)
                 {
-                    str_commandText = "select * from book where replace(cast(isbn as varchar(10)),' ','') like '%" + result +
+                    str_commandText = "select * from book where replace(cast(isbn as text),' ','') like '%" + result +
                                     "%' or replace(lower(name), ' ', '') like lower('%" + result +
-                                    "%') or lower(author) like lower('%" + result +
-                                    "%') or cast(date as varchar(20)) like '%" + result + "%'";
+                                    "%') or replace(lower(author), ' ', '') like lower('%" + result +
+                                    "%') or cast(date as varchar(20)) like '%" + result + "%' order by name";
                 }
                 else if (connMode == 2)
                 {
                     str_commandText = "select * from car where lower(number) like lower('%" + result +
-                                    "%') or lower(name) like lower('%" + result +
+                                    "%') or replace(lower(name), ' ', '') like lower('%" + result +
                                     "%') or lower(company) like lower('%" + result +
-                                    "%') or cast(date as varchar(20)) like '%" + result + "%'";
+                                    "%') or cast(date as varchar(20)) like '%" + result + "%' order by name";
                 }
             }
             DB_Search(result);
@@ -739,6 +771,7 @@ namespace DB_Connection_Lite
             // 테이블 접속 했는지
             if (isSuccess == false)
             {
+                writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : 접속한 테이블이 없습니다");
                 return;
             }
 
@@ -746,13 +779,15 @@ namespace DB_Connection_Lite
             bool selected = list_table.SelectedItems.Count > 0;
             if (selected == false)
             {
+                writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : 선택된 아이템이 없습니다");
                 return;
             }
 
             ListViewItem item = list_table.SelectedItems[0];
-            String selectString = item.SubItems[0].Text;
+            string selectString = item.SubItems[0].Text;
+            string selectString_2 = item.SubItems[1].Text;
 
-            DB_Delete(selectString);
+            DB_Delete(selectString, selectString_2);
             //list_table.EnsureVisible(list_table.Items.Count - 1);
         }
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBClient));
             this.rich_state = new System.Windows.Forms.RichTextBox();
             this.bt_conncetion = new System.Windows.Forms.Button();
             this.txt_ip = new System.Windows.Forms.TextBox();
@@ -42,6 +43,7 @@
             this.ch_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ch_infor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ch_date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.bt_disconnection = new System.Windows.Forms.Button();
             this.group_search.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,13 +53,13 @@
             this.rich_state.Location = new System.Drawing.Point(12, 39);
             this.rich_state.Name = "rich_state";
             this.rich_state.ReadOnly = true;
-            this.rich_state.Size = new System.Drawing.Size(533, 106);
+            this.rich_state.Size = new System.Drawing.Size(533, 146);
             this.rich_state.TabIndex = 18;
             this.rich_state.Text = "";
             // 
             // bt_conncetion
             // 
-            this.bt_conncetion.Location = new System.Drawing.Point(449, 12);
+            this.bt_conncetion.Location = new System.Drawing.Point(348, 12);
             this.bt_conncetion.Name = "bt_conncetion";
             this.bt_conncetion.Size = new System.Drawing.Size(96, 23);
             this.bt_conncetion.TabIndex = 17;
@@ -70,7 +72,7 @@
             this.txt_ip.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.txt_ip.Location = new System.Drawing.Point(12, 12);
             this.txt_ip.Name = "txt_ip";
-            this.txt_ip.Size = new System.Drawing.Size(431, 21);
+            this.txt_ip.Size = new System.Drawing.Size(330, 21);
             this.txt_ip.TabIndex = 16;
             // 
             // group_search
@@ -80,7 +82,7 @@
             this.group_search.Controls.Add(this.bt_delete);
             this.group_search.Controls.Add(this.bt_search);
             this.group_search.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.group_search.Location = new System.Drawing.Point(12, 319);
+            this.group_search.Location = new System.Drawing.Point(12, 399);
             this.group_search.Name = "group_search";
             this.group_search.Size = new System.Drawing.Size(533, 51);
             this.group_search.TabIndex = 15;
@@ -118,7 +120,7 @@
             // 
             // bt_car
             // 
-            this.bt_car.Location = new System.Drawing.Point(291, 290);
+            this.bt_car.Location = new System.Drawing.Point(291, 370);
             this.bt_car.Name = "bt_car";
             this.bt_car.Size = new System.Drawing.Size(254, 23);
             this.bt_car.TabIndex = 14;
@@ -128,7 +130,7 @@
             // 
             // bt_book
             // 
-            this.bt_book.Location = new System.Drawing.Point(12, 290);
+            this.bt_book.Location = new System.Drawing.Point(12, 370);
             this.bt_book.Name = "bt_book";
             this.bt_book.Size = new System.Drawing.Size(254, 23);
             this.bt_book.TabIndex = 13;
@@ -146,9 +148,9 @@
             this.ch_date});
             this.list_table.FullRowSelect = true;
             this.list_table.HideSelection = false;
-            this.list_table.Location = new System.Drawing.Point(12, 151);
+            this.list_table.Location = new System.Drawing.Point(12, 191);
             this.list_table.Name = "list_table";
-            this.list_table.Size = new System.Drawing.Size(533, 127);
+            this.list_table.Size = new System.Drawing.Size(533, 173);
             this.list_table.TabIndex = 12;
             this.list_table.UseCompatibleStateImageBehavior = false;
             this.list_table.View = System.Windows.Forms.View.Details;
@@ -173,11 +175,22 @@
             this.ch_date.Text = "Date";
             this.ch_date.Width = 80;
             // 
+            // bt_disconnection
+            // 
+            this.bt_disconnection.Location = new System.Drawing.Point(449, 12);
+            this.bt_disconnection.Name = "bt_disconnection";
+            this.bt_disconnection.Size = new System.Drawing.Size(96, 23);
+            this.bt_disconnection.TabIndex = 19;
+            this.bt_disconnection.Text = "Disconnection";
+            this.bt_disconnection.UseVisualStyleBackColor = true;
+            this.bt_disconnection.Click += new System.EventHandler(this.bt_disconnection_Click);
+            // 
             // DBClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 378);
+            this.ClientSize = new System.Drawing.Size(556, 460);
+            this.Controls.Add(this.bt_disconnection);
             this.Controls.Add(this.rich_state);
             this.Controls.Add(this.bt_conncetion);
             this.Controls.Add(this.txt_ip);
@@ -185,6 +198,7 @@
             this.Controls.Add(this.bt_car);
             this.Controls.Add(this.bt_book);
             this.Controls.Add(this.list_table);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DBClient";
             this.Text = "데이터베이스 조작 프로그램 (Select, Delete)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_FormClosing);
@@ -211,6 +225,7 @@
         private System.Windows.Forms.ColumnHeader ch_name;
         private System.Windows.Forms.ColumnHeader ch_infor;
         private System.Windows.Forms.ColumnHeader ch_date;
+        private System.Windows.Forms.Button bt_disconnection;
     }
 }
 

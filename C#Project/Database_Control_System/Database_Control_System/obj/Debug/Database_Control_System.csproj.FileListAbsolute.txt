@@ -1,0 +1,11 @@
+D:\GitDirectory\Study\C#Project\Database_Control_System\Database_Control_System\bin\Debug\Database_Control_System.exe.config
+D:\GitDirectory\Study\C#Project\Database_Control_System\Database_Control_System\bin\Debug\Database_Control_System.exe
+D:\GitDirectory\Study\C#Project\Database_Control_System\Database_Control_System\bin\Debug\Database_Control_System.pdb
+D:\GitDirectory\Study\C#Project\Database_Control_System\Database_Control_System\obj\Debug\Database_Control_System.csproj.AssemblyReference.cache
+D:\GitDirectory\Study\C#Project\Database_Control_System\Database_Control_System\obj\Debug\Database_Control_System.csproj.SuggestedBindingRedirects.cache
+D:\GitDirectory\Study\C#Project\Database_Control_System\Database_Control_System\obj\Debug\Database_Control_System.Properties.Resources.resources
+D:\GitDirectory\Study\C#Project\Database_Control_System\Database_Control_System\obj\Debug\Database_Control_System.csproj.GenerateResource.cache
+D:\GitDirectory\Study\C#Project\Database_Control_System\Database_Control_System\obj\Debug\Database_Control_System.csproj.CoreCompileInputs.cache
+D:\GitDirectory\Study\C#Project\Database_Control_System\Database_Control_System\obj\Debug\Database_Control_System.exe
+D:\GitDirectory\Study\C#Project\Database_Control_System\Database_Control_System\obj\Debug\Database_Control_System.pdb
+D:\GitDirectory\Study\C#Project\Database_Control_System\Database_Control_System\obj\Debug\Database_Control_System.lb_DB.resources
