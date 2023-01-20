@@ -1,14 +1,4 @@
 ﻿
-/* 
- * DB_Connection_Lite
- * PostgreSQL 조작 (Select, Delete)
- * 
- * 2023.01.17
- * Socket 활용 통신 완료 (값 확인)
- * 
- */
-
-
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -35,12 +25,12 @@ namespace DB_Connection_Lite
         int connMode; // 1 = book 테이블, 2 = car 테이블
 
         // 접속할 호스트 경로
-        // 회사 제공 경로
+        // 제공 경로
         string str_DBURL = "Host=192.168.201.151;Username=postgres;Password=12345678;Database=book_car";
         // 로컬
         //string connStr = "Host=localhost;Username=postgres;Password=1234;Database=study"; 
         
-        //  소켓 통신을 위한 서버 클라이언트 접속할 경로
+        //  소켓 통신을 위한 서버 클라이언트 접속 경로
         string str_serverURL = "127.0.0.1";
         string str_serverPort = "5555";
 
@@ -57,9 +47,11 @@ namespace DB_Connection_Lite
         {
             InitializeComponent();
 
+            // Form keyDown
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(Form_KeyDown);
 
+            // list 항목 이름 지운다
             ch_primary.Text = string.Empty;
             ch_name.Text = string.Empty;
             ch_infor.Text = string.Empty;
@@ -74,9 +66,7 @@ namespace DB_Connection_Lite
             txt_search.Enabled = false;
         }
 
-        /*
-         * 편의 메소드
-         */
+        // =================================== 편의 ===================================
 
         // 에러 받아와 메시지 박스 표시
         void print_error(Exception e)
@@ -87,11 +77,11 @@ namespace DB_Connection_Lite
         // 접속 테이블 맞춰 컬럼 초기화
         private void init_Form()
         {
-            // list Invoke (타 thread 충돌 회피)
             if (list_table.InvokeRequired == true)
             {
                 list_table.Invoke((MethodInvoker)delegate
                 {
+                    // list 항목 이름 변경
                     if (connMode == 1)
                     {
                         this.ch_primary.Text = string.Format("ISBN");
@@ -114,6 +104,7 @@ namespace DB_Connection_Lite
             }
             else
             {
+                // list 항목 이름 변경
                 if (connMode == 1)
                 {
                     this.ch_primary.Text = string.Format("ISBN");
@@ -155,7 +146,7 @@ namespace DB_Connection_Lite
         // 소켓 통신 접속 성공시 폼 활성 비활성 메소드
         private void connection_successful()
         {
-            // 비활성화 설정, 해제 (Invoke)
+            // TextBox, Button 활성화, 비활성화
             // txt_ip 비활성화
             if (txt_ip.InvokeRequired == true)
             {
@@ -257,7 +248,7 @@ namespace DB_Connection_Lite
         // 소켓 통신 연결 해제 시 폼 활성, 비활성 메소드
         private void disconnect()
         {
-            // 비활성화 설정, 해제 (Invoke)
+            // TextBox, Button 활성화 비활성화
             // txt_ip 활성화
             if (txt_ip.InvokeRequired == true)
             {
@@ -356,11 +347,9 @@ namespace DB_Connection_Lite
             }
         }
 
-        /*
-         * 소켓 통신 
-         */
+        // =================================== 소켓 통신 ===================================
 
-        // 서버로부터 write 읽어서 richBox 표시
+        // 서버로부터 Write 읽어서 RichBox 표시
         private void writeRichBox(string input)
         {
             if(rich_state.InvokeRequired == true)
@@ -378,6 +367,7 @@ namespace DB_Connection_Lite
             }
         }
 
+        // 소켓 통신을 시작하는 Thread
         private void socket_start()
         {
             Thread thread = new Thread(connect);  
@@ -388,7 +378,8 @@ namespace DB_Connection_Lite
         // 서버와 소켓 통신
         private void connect()
         {
-            // IP TextBox 유효성 검사 시작
+            // Connection 버튼 클릭 시 txt_ip 입력 값 받아오는데
+            // txt_ip 입력 값 유효성 검증
             // TextBox가 비어있으면
             if (txt_ip.Text.Equals(""))
             {
@@ -421,6 +412,7 @@ namespace DB_Connection_Lite
                 bt_conncetion.Enabled = false;
             }
 
+            // 접속 시도
             try
             {
                 client = new TcpClient();
@@ -432,7 +424,7 @@ namespace DB_Connection_Lite
                 writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : 접속에 성공하였습니다 " + str_serverURL + ":" + str_serverPort);
                 isConnection= true;
 
-                // 최초 table 먼저 list에 표시하기
+                // 최초 table 먼저 list에 표시하기 (bt_book Click Listener 활용)
                 if(this.bt_book.InvokeRequired == true)
                 {
                     this.bt_book.Invoke((MethodInvoker)delegate
@@ -451,9 +443,9 @@ namespace DB_Connection_Lite
 
                 while (true)
                 {
-                    // 반복하면서 서버의 메시지를 읽음
+                    // 서버가 보낸 메시지를 읽음
                     string receiveData = streamReader.ReadLine();
-                    // 서버로부터의 통신 종료 or 종료 신호 메시지
+                    // 서버가 닫힌 것이 확인되면
                     if (receiveData == null || receiveData.Equals("exit"))
                     {
                         writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : 서버로부터 통신이 종료되었습니다");
@@ -463,7 +455,7 @@ namespace DB_Connection_Lite
                         isConnection = false;
                         isSuccess = false;
 
-                        // 리스트 비우기 (Invoke)
+                        // 리스트 비우기
                         if(list_table.InvokeRequired == true)
                         {
                             list_table.Invoke((MethodInvoker)delegate
@@ -479,10 +471,10 @@ namespace DB_Connection_Lite
                         disconnect();
                         break;
                     }
-                    Console.WriteLine(receiveData);
-                    writeRichBox(receiveData);
 
-                    // table 접속 중일때
+                    // 그 외 메시지가 들어오면 (Insert, Update)
+                    // RichBox에 표시하고 List 업데이트
+                    writeRichBox(receiveData);
                     if (isSuccess)
                     {
                         // 접속table에 따라
@@ -506,9 +498,7 @@ namespace DB_Connection_Lite
             }
         }
 
-        /*
-         * DB 조작
-         */
+        // =================================== DB 조작 ===================================
 
         // DB 접속하기
         void DB_Connection()
@@ -553,7 +543,7 @@ namespace DB_Connection_Lite
 
             using (var reader = cmd.ExecuteReader())
             {
-                ListViewItem item;
+                ListViewItem item = null;
 
                 while (reader.Read())
                 {
@@ -595,8 +585,9 @@ namespace DB_Connection_Lite
                         {
                             list_table.Items.Add(item);
                         }
+                        init_Form();
                     }
-                    init_Form();
+                    
                 }
             }
         }
@@ -665,7 +656,8 @@ namespace DB_Connection_Lite
                         {
                             str_commandText = str_selectCar;
                         }
-                        DB_Connection();
+                        cmd.CommandText = str_commandText;
+                        Reading_Data(cmd);
                         
                         // 소켓 접속 판단
                         if(isConnection == true)
@@ -687,7 +679,7 @@ namespace DB_Connection_Lite
             }
         }
 
-        // 버튼 클릭 이벤트
+        // =================================== 버튼 클릭 ===================================
 
         // Book 버튼
         private void bt_book_Click(object sender, EventArgs e)
