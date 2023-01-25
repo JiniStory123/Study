@@ -420,7 +420,7 @@ namespace DB_Connection_Lite
                 client.Connect(ipEnd);
 
                 // 접속 성공
-                connection_successful();
+                connection_successful(); 
                 writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : 접속에 성공하였습니다 " + str_serverURL + ":" + str_serverPort);
                 isConnection= true;
 
@@ -617,7 +617,13 @@ namespace DB_Connection_Lite
                 {
                     if(!result.Equals(""))
                     {
-                        streamWriter.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : \"" + result + "\" 검색 알림");
+                        // 접속 테이블대로 어느 테이블에서 DELETE 한 건지 보내기
+                        string mode = "";
+                        if (connMode == 1)
+                            mode = "BOOK TABLE";
+                        if (connMode == 2)
+                            mode = "CAR TABLE";
+                        streamWriter.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : " + mode + " \"" + result + "\" 검색 알림");
                     }
                 }
             }
@@ -686,6 +692,7 @@ namespace DB_Connection_Lite
             connMode = 1;
             str_commandText = str_selectBook;
             DB_Connection();
+            init_Form();
         }
 
         // Car 버튼
@@ -694,6 +701,7 @@ namespace DB_Connection_Lite
             connMode = 2;
             str_commandText = str_selectCar;
             DB_Connection();
+            init_Form();
         }
 
         // Connection 버튼
