@@ -587,7 +587,6 @@ namespace DB_Connection_Lite
                         }
                         init_Form();
                     }
-                    
                 }
             }
         }
