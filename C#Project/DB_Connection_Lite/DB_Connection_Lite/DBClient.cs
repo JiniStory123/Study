@@ -143,7 +143,7 @@ namespace DB_Connection_Lite
             }
         }
 
-        // 소켓 통신 접속 성공시 폼 활성 비활성 메소드
+        // 소켓 통신 성공시 호출
         private void connection_successful()
         {
             // TextBox, Button 활성화, 비활성화
@@ -245,7 +245,7 @@ namespace DB_Connection_Lite
             }
         }
 
-        // 소켓 통신 연결 해제 시 폼 활성, 비활성 메소드
+        // 소켓 통신 연결 해제시 호출
         private void disconnect()
         {
             // TextBox, Button 활성화 비활성화
@@ -367,7 +367,7 @@ namespace DB_Connection_Lite
             }
         }
 
-        // 소켓 통신을 시작하는 Thread
+        // 소켓 통신 Thread
         private void socket_start()
         {
             Thread thread = new Thread(connect);  
@@ -378,8 +378,7 @@ namespace DB_Connection_Lite
         // 서버와 소켓 통신
         private void connect()
         {
-            // Connection 버튼 클릭 시 txt_ip 입력 값 받아오는데
-            // txt_ip 입력 값 유효성 검증
+            // 유효성 
             // TextBox가 비어있으면
             if (txt_ip.Text.Equals(""))
             {
@@ -396,8 +395,7 @@ namespace DB_Connection_Lite
                 return;
             }
 
-            // IP 유효성 검사 이상 없을 때 TextBox에서 주소 받아와 저장
-            str_serverURL = txt_ip.Text;
+            str_serverURL = txt_ip.Text; // TextBox에서 주소 받아와 저장
 
             // bt_connection 일단 비활성화
             if (bt_conncetion.InvokeRequired == true)
@@ -420,11 +418,11 @@ namespace DB_Connection_Lite
                 client.Connect(ipEnd);
 
                 // 접속 성공
-                connection_successful(); 
+                connection_successful(); // 접속 성공시 호출 (버튼 활성, 비활성)
                 writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : 접속에 성공하였습니다 " + str_serverURL + ":" + str_serverPort);
                 isConnection= true;
 
-                // 최초 table 먼저 list에 표시하기 (bt_book Click Listener 활용)
+                // List 표시
                 if(this.bt_book.InvokeRequired == true)
                 {
                     this.bt_book.Invoke((MethodInvoker)delegate
@@ -467,8 +465,7 @@ namespace DB_Connection_Lite
                         {
                             list_table.Items.Clear();
                         }
-                        // 폼 활성, 비활성
-                        disconnect();
+                        disconnect(); // 통신 종료시 호출 (활성, 비활성)
                         break;
                     }
 
@@ -492,13 +489,12 @@ namespace DB_Connection_Lite
             }
             catch (SocketException e)
             {
-                //print_error(e);
                 writeRichBox(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : "+ e.Message);
                 disconnect();
             }
         }
 
-        // =================================== DB 조작 ===================================
+        // =================================== DB ===================================
 
         // DB 접속하기
         void DB_Connection()
@@ -515,7 +511,7 @@ namespace DB_Connection_Lite
 
                         Reading_Data(cmd);
                         isSuccess= true;
-                        init_Search();
+                        init_Search(); // 검색창 초기화
                     }
                 }
                 catch (Exception e)
@@ -585,8 +581,8 @@ namespace DB_Connection_Lite
                         {
                             list_table.Items.Add(item);
                         }
-                        init_Form();
                     }
+                    init_Form();
                 }
             }
         }
@@ -617,7 +613,6 @@ namespace DB_Connection_Lite
                 {
                     if(!result.Equals(""))
                     {
-                        // 접속 테이블대로 어느 테이블에서 DELETE 한 건지 보내기
                         string mode = "";
                         if (connMode == 1)
                             mode = "BOOK TABLE";
@@ -652,7 +647,18 @@ namespace DB_Connection_Lite
                         cmd.ExecuteNonQuery();
 
                         // 리스트 싹다 지운뒤 데이터 다시 표시
-                        list_table.Items.Clear();
+                        if (list_table.InvokeRequired == true)
+                        {
+                            list_table.Invoke((MethodInvoker)delegate
+                            {
+                                list_table.Items.Clear();
+                            });
+                        }
+                        else
+                        {
+                            list_table.Items.Clear();
+                        }
+
                         if (connMode == 1)
                         {
                             str_commandText = str_selectBook;
@@ -684,7 +690,7 @@ namespace DB_Connection_Lite
             }
         }
 
-        // =================================== 버튼 클릭 ===================================
+        // =================================== 버튼 ===================================
 
         // Book 버튼
         private void bt_book_Click(object sender, EventArgs e)
@@ -692,7 +698,6 @@ namespace DB_Connection_Lite
             connMode = 1;
             str_commandText = str_selectBook;
             DB_Connection();
-            init_Form();
         }
 
         // Car 버튼
@@ -701,13 +706,12 @@ namespace DB_Connection_Lite
             connMode = 2;
             str_commandText = str_selectCar;
             DB_Connection();
-            init_Form();
         }
 
         // Connection 버튼
         private void bt_conncetion_Click(object sender, EventArgs e)
         {
-            socket_start();
+            socket_start(); // 소켓 통신 Thread 시작
         }
 
         // Disconnection 버튼
@@ -748,17 +752,17 @@ namespace DB_Connection_Lite
             {
                 if (connMode == 1)
                 {
-                    str_commandText = "select * from book where replace(cast(isbn as text),' ','') like '%" + result +
-                                    "%' or replace(lower(name), ' ', '') like lower('%" + result +
-                                    "%') or replace(lower(author), ' ', '') like lower('%" + result +
-                                    "%') or cast(date as varchar(20)) like '%" + result + "%' order by name";
+                    str_commandText = "select * from book where replace(cast(isbn as text),' ','') like replace('%" + result +
+                                    "%', ' ', '') or replace(lower(name), ' ', '') like replace(lower('%" + result +
+                                    "%'), ' ', '') or replace(lower(author), ' ', '') like replace(lower('%" + result +
+                                    "%'), ' ', '') or cast(date as varchar(20)) like '%" + result + "%' order by name";
                 }
                 else if (connMode == 2)
                 {
-                    str_commandText = "select * from car where lower(number) like lower('%" + result +
-                                    "%') or replace(lower(name), ' ', '') like lower('%" + result +
-                                    "%') or lower(company) like lower('%" + result +
-                                    "%') or cast(date as varchar(20)) like '%" + result + "%' order by name";
+                    str_commandText = "select * from car where replace(lower(number), ' ', '') like replace(lower('%" + result +
+                                    "%'), ' ', '') or replace(lower(name), ' ', '') like replace(lower('%" + result +
+                                    "%'), ' ', '') or replace(lower(company), ' ', '') like replace(lower('%" + result +
+                                    "%'), ' ', '') or cast(date as varchar(20)) like '%" + result + "%' order by name";
                 }
             }
             DB_Search(result);
