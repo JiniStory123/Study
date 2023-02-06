@@ -26,9 +26,9 @@ namespace DB_Connection_Lite
 
         // 접속할 호스트 경로
         // 제공 경로
-        string str_DBURL = "Host=192.168.201.151;Username=postgres;Password=12345678;Database=book_car";
+        //string str_DBURL = "Host=192.168.201.151;Username=postgres;Password=12345678;Database=book_car";
         // 로컬
-        //string connStr = "Host=localhost;Username=postgres;Password=1234;Database=study"; 
+        string str_DBURL = "Host=localhost;Username=postgres;Password=1234;Database=study"; 
         
         //  소켓 통신을 위한 서버 클라이언트 접속 경로
         string str_serverURL = "127.0.0.1";
@@ -42,6 +42,8 @@ namespace DB_Connection_Lite
         string str_commandText = "";
         string str_selectBook = "select * from book order by name";
         string str_selectCar = "select * from car order by name";
+
+        NpgsqlConnection conn;
 
         public DBClient()
         {
@@ -474,6 +476,11 @@ namespace DB_Connection_Lite
                     writeRichBox(receiveData);
                     if (isSuccess)
                     {
+                        using (NpgsqlCommand cmd = new NpgsqlCommand($"LISTEN mychannel", conn))
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+
                         // 접속table에 따라
                         if (connMode == 1)
                         {
@@ -499,11 +506,12 @@ namespace DB_Connection_Lite
         // DB 접속하기
         void DB_Connection()
         {
-            using (var conn = new NpgsqlConnection(str_DBURL))
+            using (conn = new NpgsqlConnection(str_DBURL))
             {
                 try
                 {
                     conn.Open();
+                    conn.Notification += PostgresNotification;
                     using(var cmd = new NpgsqlCommand())
                     {
                         cmd.Connection = conn;
@@ -519,6 +527,11 @@ namespace DB_Connection_Lite
                     print_error(e);
                 }
             }
+        }
+
+        static void PostgresNotification(object sender, NpgsqlNotificationEventArgs e)
+        {
+            Console.WriteLine("Notification Received");
         }
 
         // 읽어온 DB 데이터 List에 표시하기

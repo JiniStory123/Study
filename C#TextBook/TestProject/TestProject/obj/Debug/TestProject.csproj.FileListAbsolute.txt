@@ -1,0 +1,8 @@
+D:\GitDirectory\Study\C#TextBook\TestProject\TestProject\bin\Debug\TestProject.exe.config
+D:\GitDirectory\Study\C#TextBook\TestProject\TestProject\bin\Debug\TestProject.exe
+D:\GitDirectory\Study\C#TextBook\TestProject\TestProject\bin\Debug\TestProject.pdb
+D:\GitDirectory\Study\C#TextBook\TestProject\TestProject\obj\Debug\TestProject.csproj.AssemblyReference.cache
+D:\GitDirectory\Study\C#TextBook\TestProject\TestProject\obj\Debug\TestProject.csproj.SuggestedBindingRedirects.cache
+D:\GitDirectory\Study\C#TextBook\TestProject\TestProject\obj\Debug\TestProject.csproj.CoreCompileInputs.cache
+D:\GitDirectory\Study\C#TextBook\TestProject\TestProject\obj\Debug\TestProject.exe
+D:\GitDirectory\Study\C#TextBook\TestProject\TestProject\obj\Debug\TestProject.pdb

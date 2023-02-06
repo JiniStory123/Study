@@ -1,0 +1,8 @@
+D:\GitDirectory\Study\C#TextBook\Part_3\22_4_StructArray\22_4_StructArray\bin\Debug\22_4_StructArray.exe.config
+D:\GitDirectory\Study\C#TextBook\Part_3\22_4_StructArray\22_4_StructArray\bin\Debug\22_4_StructArray.exe
+D:\GitDirectory\Study\C#TextBook\Part_3\22_4_StructArray\22_4_StructArray\bin\Debug\22_4_StructArray.pdb
+D:\GitDirectory\Study\C#TextBook\Part_3\22_4_StructArray\22_4_StructArray\obj\Debug\22_4_StructArray.csproj.AssemblyReference.cache
+D:\GitDirectory\Study\C#TextBook\Part_3\22_4_StructArray\22_4_StructArray\obj\Debug\22_4_StructArray.csproj.SuggestedBindingRedirects.cache
+D:\GitDirectory\Study\C#TextBook\Part_3\22_4_StructArray\22_4_StructArray\obj\Debug\22_4_StructArray.csproj.CoreCompileInputs.cache
+D:\GitDirectory\Study\C#TextBook\Part_3\22_4_StructArray\22_4_StructArray\obj\Debug\22_4_StructArray.exe
+D:\GitDirectory\Study\C#TextBook\Part_3\22_4_StructArray\22_4_StructArray\obj\Debug\22_4_StructArray.pdb

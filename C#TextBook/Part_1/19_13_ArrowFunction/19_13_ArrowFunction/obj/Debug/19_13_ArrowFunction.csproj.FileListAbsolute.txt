@@ -1,0 +1,8 @@
+D:\GitDirectory\Study\C#TextBook\Part_1\19_13_ArrowFunction\19_13_ArrowFunction\bin\Debug\19_13_ArrowFunction.exe.config
+D:\GitDirectory\Study\C#TextBook\Part_1\19_13_ArrowFunction\19_13_ArrowFunction\bin\Debug\19_13_ArrowFunction.exe
+D:\GitDirectory\Study\C#TextBook\Part_1\19_13_ArrowFunction\19_13_ArrowFunction\bin\Debug\19_13_ArrowFunction.pdb
+D:\GitDirectory\Study\C#TextBook\Part_1\19_13_ArrowFunction\19_13_ArrowFunction\obj\Debug\19_13_ArrowFunction.csproj.AssemblyReference.cache
+D:\GitDirectory\Study\C#TextBook\Part_1\19_13_ArrowFunction\19_13_ArrowFunction\obj\Debug\19_13_ArrowFunction.csproj.SuggestedBindingRedirects.cache
+D:\GitDirectory\Study\C#TextBook\Part_1\19_13_ArrowFunction\19_13_ArrowFunction\obj\Debug\19_13_ArrowFunction.csproj.CoreCompileInputs.cache
+D:\GitDirectory\Study\C#TextBook\Part_1\19_13_ArrowFunction\19_13_ArrowFunction\obj\Debug\19_13_ArrowFunction.exe
+D:\GitDirectory\Study\C#TextBook\Part_1\19_13_ArrowFunction\19_13_ArrowFunction\obj\Debug\19_13_ArrowFunction.pdb

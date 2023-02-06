@@ -1,0 +1,8 @@
+D:\GitDirectory\Study\C#TextBook\Part_3\22_3_StructVariable\22_3_StructVariable\bin\Debug\22_3_StructVariable.exe.config
+D:\GitDirectory\Study\C#TextBook\Part_3\22_3_StructVariable\22_3_StructVariable\bin\Debug\22_3_StructVariable.exe
+D:\GitDirectory\Study\C#TextBook\Part_3\22_3_StructVariable\22_3_StructVariable\bin\Debug\22_3_StructVariable.pdb
+D:\GitDirectory\Study\C#TextBook\Part_3\22_3_StructVariable\22_3_StructVariable\obj\Debug\22_3_StructVariable.csproj.AssemblyReference.cache
+D:\GitDirectory\Study\C#TextBook\Part_3\22_3_StructVariable\22_3_StructVariable\obj\Debug\22_3_StructVariable.csproj.SuggestedBindingRedirects.cache
+D:\GitDirectory\Study\C#TextBook\Part_3\22_3_StructVariable\22_3_StructVariable\obj\Debug\22_3_StructVariable.csproj.CoreCompileInputs.cache
+D:\GitDirectory\Study\C#TextBook\Part_3\22_3_StructVariable\22_3_StructVariable\obj\Debug\22_3_StructVariable.exe
+D:\GitDirectory\Study\C#TextBook\Part_3\22_3_StructVariable\22_3_StructVariable\obj\Debug\22_3_StructVariable.pdb

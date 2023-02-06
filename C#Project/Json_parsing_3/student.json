@@ -1,0 +1,55 @@
+{
+	'update' : '2023-02-06',
+	'student': [
+		{
+			"name": "김진",
+			"age": 25,
+			"address": "정림동"
+		},
+		{
+			"name": "김수환",
+			"age": 27,
+			"address": "집현동"
+		},
+		{
+			"name": "이승연",
+			"age": 25,
+			"address": "가수원동"
+		},
+		{
+			"name": "전현진",
+			"age": 27,
+			"address": "집현동"
+		},
+		{
+			"name": "최정욱",
+			"age": 29,
+			"address": "관저동"
+		},
+		{
+			"name": "김찬교",
+			"age": 26,
+			"address": "정림동"
+		},
+		{
+			"name": "최인영",
+			"age": 27,
+			"address": "정림동"
+		},
+		{
+			"name": "황이루리",
+			"age": 22,
+			"address": "화천"
+		},
+		{
+			"name": "김용호",
+			"age": 22,
+			"address": "영월"
+		},
+		{
+			"name": "유승엽",
+			"age": 22,
+			"address": "계룡"
+		}
+	]
+}

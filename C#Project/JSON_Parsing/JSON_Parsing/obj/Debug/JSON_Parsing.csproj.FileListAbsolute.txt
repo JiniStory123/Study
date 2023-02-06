@@ -1,0 +1,11 @@
+D:\GitDirectory\Study\C#Project\JSON_Parsing\JSON_Parsing\bin\Debug\JSON_Parsing.exe.config
+D:\GitDirectory\Study\C#Project\JSON_Parsing\JSON_Parsing\bin\Debug\JSON_Parsing.exe
+D:\GitDirectory\Study\C#Project\JSON_Parsing\JSON_Parsing\bin\Debug\JSON_Parsing.pdb
+D:\GitDirectory\Study\C#Project\JSON_Parsing\JSON_Parsing\bin\Debug\Newtonsoft.Json.dll
+D:\GitDirectory\Study\C#Project\JSON_Parsing\JSON_Parsing\bin\Debug\Newtonsoft.Json.xml
+D:\GitDirectory\Study\C#Project\JSON_Parsing\JSON_Parsing\obj\Debug\JSON_Parsing.csproj.AssemblyReference.cache
+D:\GitDirectory\Study\C#Project\JSON_Parsing\JSON_Parsing\obj\Debug\JSON_Parsing.csproj.SuggestedBindingRedirects.cache
+D:\GitDirectory\Study\C#Project\JSON_Parsing\JSON_Parsing\obj\Debug\JSON_Parsing.csproj.CoreCompileInputs.cache
+D:\GitDirectory\Study\C#Project\JSON_Parsing\JSON_Parsing\obj\Debug\JSON_Parsing.csproj.CopyComplete
+D:\GitDirectory\Study\C#Project\JSON_Parsing\JSON_Parsing\obj\Debug\JSON_Parsing.exe
+D:\GitDirectory\Study\C#Project\JSON_Parsing\JSON_Parsing\obj\Debug\JSON_Parsing.pdb

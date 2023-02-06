@@ -1,0 +1,8 @@
+D:\GitDirectory\Study\C#TextBook\Part_3\21_3_MathClass\21_3_MathClass\bin\Debug\21_3_MathClass.exe.config
+D:\GitDirectory\Study\C#TextBook\Part_3\21_3_MathClass\21_3_MathClass\bin\Debug\21_3_MathClass.exe
+D:\GitDirectory\Study\C#TextBook\Part_3\21_3_MathClass\21_3_MathClass\bin\Debug\21_3_MathClass.pdb
+D:\GitDirectory\Study\C#TextBook\Part_3\21_3_MathClass\21_3_MathClass\obj\Debug\21_3_MathClass.csproj.AssemblyReference.cache
+D:\GitDirectory\Study\C#TextBook\Part_3\21_3_MathClass\21_3_MathClass\obj\Debug\21_3_MathClass.csproj.SuggestedBindingRedirects.cache
+D:\GitDirectory\Study\C#TextBook\Part_3\21_3_MathClass\21_3_MathClass\obj\Debug\21_3_MathClass.csproj.CoreCompileInputs.cache
+D:\GitDirectory\Study\C#TextBook\Part_3\21_3_MathClass\21_3_MathClass\obj\Debug\21_3_MathClass.exe
+D:\GitDirectory\Study\C#TextBook\Part_3\21_3_MathClass\21_3_MathClass\obj\Debug\21_3_MathClass.pdb
