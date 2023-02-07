@@ -1,0 +1,15 @@
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\bin\Debug\MySQL_Json_Parsing_Test.exe.config
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\bin\Debug\MySQL_Json_Parsing_Test.exe
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\bin\Debug\MySQL_Json_Parsing_Test.pdb
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\bin\Debug\Newtonsoft.Json.Bson.dll
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\bin\Debug\Newtonsoft.Json.dll
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\bin\Debug\Newtonsoft.Json.pdb
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\bin\Debug\Newtonsoft.Json.xml
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\bin\Debug\Newtonsoft.Json.Bson.pdb
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\bin\Debug\Newtonsoft.Json.Bson.xml
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\obj\Debug\MySQL_Json_Parsing_Test.csproj.AssemblyReference.cache
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\obj\Debug\MySQL_Json_Parsing_Test.csproj.SuggestedBindingRedirects.cache
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\obj\Debug\MySQL_Json_Parsing_Test.csproj.CoreCompileInputs.cache
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\obj\Debug\MySQL_Json_Parsing_Test.csproj.CopyComplete
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\obj\Debug\MySQL_Json_Parsing_Test.exe
+D:\GitDirectory\Study\C#Project\MySQL_Json_Parsing_Test\MySQL_Json_Parsing_Test\obj\Debug\MySQL_Json_Parsing_Test.pdb

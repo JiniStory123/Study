@@ -26,13 +26,19 @@ namespace JSON_Parsing_2
 
             string responseFromServer = reader.ReadToEnd();
 
-            Console.WriteLine(responseFromServer);
+            //Console.WriteLine(responseFromServer);
 
             reader.Close();
             dataStream.Close();
             response.Close();
 
             //JObject json = JObject.Parse(responseFromServer);
+            JArray j = JArray.Parse(responseFromServer);
+
+            Console.WriteLine(j.ToString());
+
+            Console.WriteLine(j[0]["id"]);
+            Console.WriteLine(j[1]["end"]);
         }
     }
 }
