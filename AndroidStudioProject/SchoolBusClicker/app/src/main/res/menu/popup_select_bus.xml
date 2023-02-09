@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_D1"
+        android:title="등교 버스 1호차" />
+    <item
+        android:id="@+id/action_D2"
+        android:title="등교 버스 2호차" />
+    <item
+        android:id="@+id/action_D3"
+        android:title="등교 버스 3호차" />
+
+    <item
+        android:id="@+id/action_H1"
+        android:title="하교 버스 1호차" />
+    <item
+        android:id="@+id/action_H2"
+        android:title="하교 버스 2호차" />
+    <item
+        android:id="@+id/action_H3"
+        android:title="하교 버스 3호차" />
+
+</menu>

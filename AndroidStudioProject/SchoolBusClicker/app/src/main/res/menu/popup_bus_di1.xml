@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_S1"
+        android:title="교대역9번출구" />
+    <item
+        android:id="@+id/action_S2"
+        android:title="죽전간이정류장" />
+    <item
+        android:id="@+id/action_S3"
+        android:title="신갈버스정류장" />
+
+</menu>

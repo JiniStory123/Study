@@ -1,0 +1,34 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_S1"
+        android:title="신탄진역" />
+    <item
+        android:id="@+id/action_S2"
+        android:title="신탄진톨게이트" />
+    <item
+        android:id="@+id/action_S3"
+        android:title="대덕구보건소" />
+    <item
+        android:id="@+id/action_S4"
+        android:title="목상동파출소" />
+    <item
+        android:id="@+id/action_S5"
+        android:title="송강실내테니스장" />
+    <item
+        android:id="@+id/action_S6"
+        android:title="대덕테크노밸리아파트" />
+    <item
+        android:id="@+id/action_S7"
+        android:title="전민동" />
+    <item
+        android:id="@+id/action_S8"
+        android:title="한빛탑" />
+    <item
+        android:id="@+id/action_S9"
+        android:title="만년동" />
+    <item
+        android:id="@+id/action_S10"
+        android:title="유성온천역3번출구" />
+
+</menu>

@@ -1,0 +1,37 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_S1"
+        android:title="가수원네거리" />
+    <item
+        android:id="@+id/action_S2"
+        android:title="정림동" />
+    <item
+        android:id="@+id/action_S3"
+        android:title="도마동" />
+    <item
+        android:id="@+id/action_S4"
+        android:title="버드내아파트" />
+    <item
+        android:id="@+id/action_S5"
+        android:title="유천동" />
+    <item
+        android:id="@+id/action_S6"
+        android:title="서대전공원" />
+    <item
+        android:id="@+id/action_S7"
+        android:title="중구청2번출구" />
+    <item
+        android:id="@+id/action_S8"
+        android:title="대전역" />
+    <item
+        android:id="@+id/action_S9"
+        android:title="효동현대아파트" />
+    <item
+        android:id="@+id/action_S10"
+        android:title="은어송아파트" />
+    <item
+        android:id="@+id/action_S11"
+        android:title="산내소방서" />
+
+</menu>
